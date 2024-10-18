@@ -1,10 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
 <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <application
-        android:label="T-mart Expiry Date"
+        android:label="TMinder"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
