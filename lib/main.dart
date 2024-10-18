@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tmart_expiry_date/features/home/presentation/cubits/scan_barcode/scan_barcode_cubit.dart';
+import 'package:tmart_expiry_date/generated/l10n.dart';
 
 import 'core/helper_functions/on_generate_routes.dart';
 import 'features/auth/presentation/views/signin_view.dart';
@@ -23,6 +26,14 @@ class TmartExpiApp extends StatelessWidget {
         return BlocProvider(
           create: (context) => ScanBarcodeCubit(),
           child: MaterialApp(
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            locale: const Locale('ar'),
             debugShowCheckedModeBanner: false,
             initialRoute: SigninView.routeName,
             theme: ThemeData(

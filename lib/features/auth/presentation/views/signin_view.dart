@@ -10,7 +10,7 @@ class SigninView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context, title: 'تسجيل الدخول'),
-      body: const SigninViewBody(),
+      body: const SafeArea(child: SigninViewBody()),
     );
   }
 }
