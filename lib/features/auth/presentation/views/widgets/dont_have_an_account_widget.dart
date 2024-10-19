@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tmart_expiry_date/core/utils/app_colors.dart';
 import 'package:tmart_expiry_date/core/utils/app_text_styles.dart';
+import 'package:tmart_expiry_date/features/auth/presentation/views/signup_view.dart';
 
 class DonthHaveAnAccountWidget extends StatelessWidget {
   const DonthHaveAnAccountWidget({
@@ -20,7 +21,7 @@ class DonthHaveAnAccountWidget extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            // Navigator.of(context).pushNamed(SignUpView.routeName);
+            Navigator.of(context).pushNamed(SignupView.routeName);
           },
           child: Text(
             'قم بإنشاء حساب',
