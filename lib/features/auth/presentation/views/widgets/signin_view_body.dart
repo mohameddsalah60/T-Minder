@@ -17,60 +17,62 @@ class SigninViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.r),
-      child: Column(
-        children: [
-          const SizedBox(
-            height: 24,
-          ),
-          const CustomTextFromField(hintText: 'البريد الالكتروني'),
-          const SizedBox(
-            height: 16,
-          ),
-          CustomPasswordField(
-            onSaved: (password) {},
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: GestureDetector(
-              onTap: () {},
-              child: Text(
-                'نسيت كلمة المرور؟',
-                style: TextStyles.semiBold13.copyWith(
-                  color: AppColors.primaryColor,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 24,
+            ),
+            const CustomTextFromField(hintText: 'البريد الالكتروني'),
+            const SizedBox(
+              height: 16,
+            ),
+            CustomPasswordField(
+              onSaved: (password) {},
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: GestureDetector(
+                onTap: () {},
+                child: Text(
+                  'نسيت كلمة المرور؟',
+                  style: TextStyles.semiBold13.copyWith(
+                    color: AppColors.primaryColor,
+                  ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 37,
-          ),
-          const CustomButton(text: 'تسجيل الدخول'),
-          const SizedBox(
-            height: 33,
-          ),
-          const DonthHaveAnAccountWidget(),
-          const SizedBox(
-            height: 33,
-          ),
-          const OrDivider(),
-          const SizedBox(
-            height: 16,
-          ),
-          const SocialSignInButton(
-            text: 'تسجيل بواسطة جوجل',
-            img: Assets.assetsImagesGoogleIcon,
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          const SocialSignInButton(
-            text: 'تسجيل بواسطة فيسبوك',
-            img: Assets.assetsImagesFacebookIcon,
-          ),
-        ],
+            const SizedBox(
+              height: 37,
+            ),
+            const CustomButton(text: 'تسجيل الدخول'),
+            const SizedBox(
+              height: 33,
+            ),
+            const DonthHaveAnAccountWidget(),
+            const SizedBox(
+              height: 33,
+            ),
+            const OrDivider(),
+            const SizedBox(
+              height: 16,
+            ),
+            const SocialSignInButton(
+              text: 'تسجيل بواسطة جوجل',
+              img: Assets.assetsImagesGoogleIcon,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            const SocialSignInButton(
+              text: 'تسجيل بواسطة فيسبوك',
+              img: Assets.assetsImagesFacebookIcon,
+            ),
+          ],
+        ),
       ),
     );
   }

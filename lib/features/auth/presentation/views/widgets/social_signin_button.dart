@@ -30,7 +30,7 @@ class SocialSignInButton extends StatelessWidget {
             title: Text(
               text,
               textAlign: TextAlign.center,
-              style: TextStyles.semiBold16.copyWith(color: Colors.black),
+              style: TextStyles.semiBold14.copyWith(color: Colors.black),
             ),
           )),
     );
