@@ -6,12 +6,7 @@ AppBar buildAppBar(BuildContext context,
     {required String title, void Function()? onTap, List<Widget>? actions}) {
   return AppBar(
     systemOverlayStyle: const SystemUiOverlayStyle(
-      // Status bar color
-      statusBarColor: Colors.transparent,
-
-      // Status bar brightness (optional)
-      statusBarIconBrightness: Brightness.dark, // For Android (dark icons)
-      statusBarBrightness: Brightness.light, // For iOS (dark icons)
+      statusBarColor: Color.fromARGB(15, 0, 0, 0),
     ),
     actions: actions,
     centerTitle: true,

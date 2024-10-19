@@ -9,5 +9,17 @@ class Assets {
   /// Assets for assetsImagesAppIcon
   /// assets/images/app_icon.png
   static const String assetsImagesAppIcon = "assets/images/app_icon.png";
+
+  /// Assets for assetsImagesBackgroundSplash
+  /// assets/images/background_splash.png
+  static const String assetsImagesBackgroundSplash = "assets/images/background_splash.png";
+
+  /// Assets for assetsImagesFacebookIcon
+  /// assets/images/facebook_icon.svg
+  static const String assetsImagesFacebookIcon = "assets/images/facebook_icon.svg";
+
+  /// Assets for assetsImagesGoogleIcon
+  /// assets/images/google_icon.svg
+  static const String assetsImagesGoogleIcon = "assets/images/google_icon.svg";
 }
 
