@@ -7,16 +7,16 @@ class SignupView extends StatelessWidget {
   static const routeName = 'signUp';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(
-        context,
-        title: 'تسجيل حساب جديد',
-        onTap: () {
-          Navigator.of(context).pop();
-        },
-      ),
-      body: const SafeArea(
-        child: SignupViewBody(),
+    return SafeArea(
+      child: Scaffold(
+        appBar: buildAppBar(
+          context,
+          title: 'تسجيل حساب جديد',
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        body: const SignupViewBody(),
       ),
     );
   }

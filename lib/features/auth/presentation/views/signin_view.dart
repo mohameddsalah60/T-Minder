@@ -8,9 +8,11 @@ class SigninView extends StatelessWidget {
   static const routeName = 'signIn';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context, title: 'تسجيل الدخول'),
-      body: const SafeArea(child: SigninViewBody()),
+    return SafeArea(
+      child: Scaffold(
+        appBar: buildAppBar(context, title: 'تسجيل الدخول'),
+        body: const SigninViewBody(),
+      ),
     );
   }
 }
