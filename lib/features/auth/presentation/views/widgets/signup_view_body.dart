@@ -1,52 +1,108 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_button.dart';
+import 'package:tmart_expiry_date/core/widgets/custom_dialog_alert.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_password_field.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_text_field.dart';
+import 'package:tmart_expiry_date/features/auth/presentation/cubits/signup_cubit/signup_cubit.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/views/widgets/terms_and_condition_widget.dart';
 
 import 'have_an_account_widget.dart';
 
-class SignupViewBody extends StatelessWidget {
+class SignupViewBody extends StatefulWidget {
   const SignupViewBody({super.key});
 
+  @override
+  State<SignupViewBody> createState() => _SignupViewBodyState();
+}
+
+class _SignupViewBodyState extends State<SignupViewBody> {
+  final GlobalKey<FormState> fromKey = GlobalKey<FormState>();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  late String name, email, password;
+  bool isSelected = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.r),
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 24,
-            ),
-            const CustomTextFromField(hintText: 'الاسم كامل'),
-            const SizedBox(
-              height: 16,
-            ),
-            const CustomTextFromField(hintText: 'البريد الإلكتروني'),
-            const SizedBox(
-              height: 16,
-            ),
-            CustomPasswordField(
-              onSaved: (password) {},
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            TermsAndConditionWidget(
-              value: false,
-              onChanged: (p0) {},
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            const CustomButton(text: 'إنشاء حساب جديد'),
-            const SizedBox(
-              height: 26,
-            ),
-            const HaveAnAccountWidget(),
-          ],
+        child: Form(
+          autovalidateMode: autovalidateMode,
+          key: fromKey,
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 24,
+              ),
+              CustomTextFromField(
+                hintText: 'الاسم كامل',
+                onSaved: (value) {
+                  name = value!;
+                },
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              CustomTextFromField(
+                hintText: 'البريد الإلكتروني',
+                onSaved: (value) {
+                  email = value!;
+                },
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              CustomPasswordField(
+                onSaved: (value) {
+                  password = value!;
+                },
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              TermsAndConditionWidget(
+                value: isSelected,
+                onChanged: (value) {
+                  setState(() {
+                    isSelected = value!;
+                  });
+                },
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              CustomButton(
+                text: 'إنشاء حساب جديد',
+                onPressed: () {
+                  if (fromKey.currentState!.validate()) {
+                    if (isSelected) {
+                      fromKey.currentState!.save();
+                      context
+                          .read<SignupCubit>()
+                          .createUserWithEmailAndPassword(
+                            name,
+                            email,
+                            password,
+                          );
+                    } else {
+                      customDialogAlert(
+                        context: context,
+                        title: 'خطأ',
+                        text: "يجب المواففة علي الشروط والاحكام",
+                        type: QuickAlertType.error,
+                      );
+                    }
+                  }
+                },
+              ),
+              const SizedBox(
+                height: 26,
+              ),
+              const HaveAnAccountWidget(),
+            ],
+          ),
         ),
       ),
     );

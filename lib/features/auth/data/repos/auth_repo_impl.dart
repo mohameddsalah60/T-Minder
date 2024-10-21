@@ -16,7 +16,6 @@ class AuthRepoImpl implements AuthRepo {
     String email,
     String password,
     String name,
-    String zone,
   ) async {
     try {
       var user = await firebaseAuthService.createUserWithEmailAndPassword(

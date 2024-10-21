@@ -11,11 +11,10 @@ class SignupCubit extends Cubit<SignupState> {
     String name,
     String email,
     String password,
-    String zone,
   ) async {
     emit(SignupLoading());
-    final result = await authRepo.createUserWithEmailAndPassword(
-        email, password, name, zone);
+    final result =
+        await authRepo.createUserWithEmailAndPassword(email, password, name);
     result.fold(
       (failure) {
         emit(SignupFailure(error: failure.messages));

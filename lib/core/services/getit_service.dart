@@ -5,7 +5,7 @@ import 'package:tmart_expiry_date/features/auth/domin/repos/auth_repo.dart';
 
 final getIt = GetIt.instance;
 
-void setup() {
+void setupGetItService() {
   getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
   getIt.registerSingleton<AuthRepo>(AuthRepoImpl(
     firebaseAuthService: getIt<FirebaseAuthService>(),
