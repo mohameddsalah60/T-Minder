@@ -2,15 +2,21 @@ import 'package:dartz/dartz.dart';
 import 'package:tmart_expiry_date/core/errors/custom_exception.dart';
 import 'package:tmart_expiry_date/core/errors/errors_messages.dart';
 import 'package:tmart_expiry_date/core/errors/failures.dart';
+import 'package:tmart_expiry_date/core/services/database_service.dart';
 import 'package:tmart_expiry_date/core/services/firebase_auth_service.dart';
+import 'package:tmart_expiry_date/core/utils/backend_endpoint.dart';
 import 'package:tmart_expiry_date/features/auth/data/models/user_model.dart';
 import 'package:tmart_expiry_date/features/auth/domin/entites/user_entity.dart';
 import 'package:tmart_expiry_date/features/auth/domin/repos/auth_repo.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final FirebaseAuthService firebaseAuthService;
+  final DatabaseService databaseService;
 
-  AuthRepoImpl({required this.firebaseAuthService});
+  AuthRepoImpl({
+    required this.databaseService,
+    required this.firebaseAuthService,
+  });
   @override
   Future<Either<Failure, UserEntity>> createUserWithEmailAndPassword(
     String email,
@@ -20,7 +26,9 @@ class AuthRepoImpl implements AuthRepo {
     try {
       var user = await firebaseAuthService.createUserWithEmailAndPassword(
           email: email, password: password);
-      return right(UserModel.fromFirebase(user));
+      var userEntity = UserModel.fromFirebase(user);
+      await addData(userEntity: userEntity);
+      return right(userEntity);
     } on CustomException catch (e) {
       return left(ServerFailures(e.message));
     } catch (e) {
@@ -69,7 +77,9 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future addData({required UserEntity userEntity}) async {
-    // TODO: implement addData
-    throw UnimplementedError();
+    await databaseService.addData(
+      path: BackendEndpoint.userCollection,
+      data: userEntity.toMap(),
+    );
   }
 }
