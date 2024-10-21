@@ -9,7 +9,7 @@ void customDialogAlert({
 }) {
   QuickAlert.show(
     context: context,
-    type: QuickAlertType.error,
+    type: type,
     text: text,
     showConfirmBtn: false,
     showCancelBtn: false,

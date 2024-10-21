@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tmart_expiry_date/core/services/custom_bloc_observer.dart';
 import 'package:tmart_expiry_date/core/services/getit_service.dart';
 import 'package:tmart_expiry_date/generated/l10n.dart';
 
@@ -14,6 +16,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Bloc.observer = CustomBlocObserver();
+
   setupGetItService();
   runApp(const TmartExpiApp());
 }

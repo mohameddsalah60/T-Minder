@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:tmart_expiry_date/core/utils/app_text_styles.dart';
 
@@ -12,7 +13,7 @@ class SocialSignInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: MediaQuery.sizeOf(context).height * .062,
+      height: 48.h,
       child: TextButton(
           onPressed: onPressed,
           style: TextButton.styleFrom(
