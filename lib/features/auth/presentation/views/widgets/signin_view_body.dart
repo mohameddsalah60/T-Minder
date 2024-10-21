@@ -8,6 +8,7 @@ import 'package:tmart_expiry_date/core/widgets/custom_button.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_password_field.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_text_field.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/cubits/signin_cubit/signin_cubit.dart';
+import 'package:tmart_expiry_date/features/auth/presentation/views/forget_password_view.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/views/widgets/dont_have_an_account_widget.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/views/widgets/or_divider.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/views/widgets/social_signin_button.dart';
@@ -57,7 +58,10 @@ class _SigninViewBodyState extends State<SigninViewBody> {
               Align(
                 alignment: Alignment.topLeft,
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context)
+                        .pushNamed(ForgetPasswordView.routeName);
+                  },
                   child: Text(
                     'نسيت كلمة المرور؟',
                     style: TextStyles.semiBold13.copyWith(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:quickalert/quickalert.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_button.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_dialog_alert.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_password_field.dart';
@@ -91,7 +90,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                         context: context,
                         title: 'خطأ',
                         text: "يجب المواففة علي الشروط والاحكام",
-                        type: QuickAlertType.error,
+                        type: "error",
                       );
                     }
                   }

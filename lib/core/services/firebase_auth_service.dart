@@ -89,4 +89,23 @@ class FirebaseAuthService {
       throw CustomException(message: ErrorsMessages.genericErrorMessage);
     }
   }
+
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await firebaseAuthInstance.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      log(
+        "Exception in FirebaseAuthService.sendPasswordResetEmail: ${e.toString()} and code is ${e.code}",
+      );
+      throw CustomException(
+        message: ErrorsMessages.getFirebaseErrorMessage(e.code),
+      );
+    } catch (e) {
+      log(
+        "Exception in FirebaseAuthService.sendPasswordResetEmail: ${e.toString()}",
+      );
+
+      throw CustomException(message: ErrorsMessages.genericErrorMessage);
+    }
+  }
 }

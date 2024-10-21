@@ -55,4 +55,15 @@ class AuthRepoImpl implements AuthRepo {
       return left(ServerFailures(ErrorsMessages.genericErrorMessage));
     }
   }
+
+  @override
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await firebaseAuthService.sendPasswordResetEmail(email);
+    } on CustomException catch (e) {
+      throw ServerFailures(e.message);
+    } catch (e) {
+      throw ServerFailures(ErrorsMessages.genericErrorMessage);
+    }
+  }
 }

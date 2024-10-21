@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quickalert/quickalert.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_dialog_alert.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_loading_indector.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/cubits/signin_cubit/signin_cubit.dart';
@@ -21,14 +20,14 @@ class SigninViewBodyBlocConsumer extends StatelessWidget {
             context: context,
             title: 'خطأ',
             text: state.error,
-            type: QuickAlertType.error,
+            type: "error",
           );
         } else if (state is SigninSuccses) {
           customDialogAlert(
             context: context,
             title: 'Succses',
-            text: 'تم انشاء حساب جديد بنجاح',
-            type: QuickAlertType.success,
+            text: 'تم تسجيل الدخول بنجاح',
+            type: 'success',
           );
         }
       },

@@ -3,13 +3,13 @@ import 'package:quickalert/quickalert.dart';
 
 void customDialogAlert({
   required BuildContext context,
-  required String title,
+  String? title,
   required String text,
-  required QuickAlertType type,
+  required String type,
 }) {
   QuickAlert.show(
     context: context,
-    type: type,
+    type: typeQuickAlert(type),
     text: text,
     showConfirmBtn: false,
     showCancelBtn: false,
@@ -18,4 +18,17 @@ void customDialogAlert({
       seconds: 3,
     ),
   );
+}
+
+QuickAlertType typeQuickAlert(String type) {
+  switch (type) {
+    case "success":
+      return QuickAlertType.success;
+    case "info":
+      return QuickAlertType.info;
+    case "error":
+      return QuickAlertType.error;
+    default:
+      return QuickAlertType.custom;
+  }
 }
