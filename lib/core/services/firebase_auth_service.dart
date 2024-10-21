@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:tmart_expiry_date/core/errors/custom_exception.dart';
 import 'package:tmart_expiry_date/core/errors/errors_messages.dart';
 
@@ -54,6 +55,36 @@ class FirebaseAuthService {
       log(
         "Exception in FirebaseAuthService.signInWithEmailAndPassword: ${e.toString()}",
       );
+
+      throw CustomException(message: ErrorsMessages.genericErrorMessage);
+    }
+  }
+
+  Future<User?> signinUserWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      if (googleUser == null) {
+        return null;
+      }
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      return (await FirebaseAuth.instance.signInWithCredential(credential))
+          .user!;
+    } on FirebaseAuthException catch (e) {
+      log("Exception in FirebaseAuthService.signinUserWithGoogle e code: ${e.code}");
+      if (e.code.contains('Null')) {
+        throw CustomException(message: ErrorsMessages.cancellationMessage);
+      }
+      throw CustomException(
+          message: ErrorsMessages.getFirebaseErrorMessage(e.code));
+    } catch (e) {
+      log("Exception in FirebaseAuthService.signinUserWithGoogle: ${e.toString()}");
 
       throw CustomException(message: ErrorsMessages.genericErrorMessage);
     }

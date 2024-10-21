@@ -90,7 +90,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
               ),
               const OrDivider(),
               const SizedBox(
-                height: 16,
+                height: 24,
               ),
               const SocialSignInButton(
                 text: 'تسجيل بواسطة جوجل',
@@ -99,9 +99,10 @@ class _SigninViewBodyState extends State<SigninViewBody> {
               const SizedBox(
                 height: 16,
               ),
-              const SocialSignInButton(
+              SocialSignInButton(
                 text: 'تسجيل بواسطة فيسبوك',
                 img: Assets.assetsImagesFacebookIcon,
+                onPressed: () {},
               ),
             ],
           ),
