@@ -32,8 +32,14 @@ class _CustomPasswordFieldState extends State<CustomPasswordField> {
           }
         },
         icon: isVisible
-            ? const Icon(Icons.visibility)
-            : const Icon(Icons.visibility_off),
+            ? const Icon(
+                Icons.visibility,
+                size: 20,
+              )
+            : const Icon(
+                Icons.visibility_off,
+                size: 20,
+              ),
       ),
     );
   }
