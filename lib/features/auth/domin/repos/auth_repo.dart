@@ -14,4 +14,5 @@ abstract class AuthRepo {
   );
   Future<Either<Failure, UserEntity>> signinUserWithGoogle();
   Future<void> sendPasswordResetEmail(String email);
+  Future addData({required UserEntity userEntity});
 }

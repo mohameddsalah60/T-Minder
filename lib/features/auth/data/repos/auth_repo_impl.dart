@@ -66,4 +66,10 @@ class AuthRepoImpl implements AuthRepo {
       throw ServerFailures(ErrorsMessages.genericErrorMessage);
     }
   }
+
+  @override
+  Future addData({required UserEntity userEntity}) async {
+    // TODO: implement addData
+    throw UnimplementedError();
+  }
 }
