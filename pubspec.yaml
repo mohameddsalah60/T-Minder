@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   barcode_scan2: ^4.3.3
+  cloud_firestore: ^5.4.4
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
   firebase_auth: ^5.3.1
