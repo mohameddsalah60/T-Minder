@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/views/forget_password_view.dart';
+import 'package:tmart_expiry_date/features/auth/presentation/views/select_zone_view.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/views/signin_view.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/views/signup_view.dart';
 
@@ -12,6 +13,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings routeSettings) {
     case ForgetPasswordView.routeName:
       return MaterialPageRoute(
           builder: (context) => const ForgetPasswordView());
+    case SelectZoneView.routeName:
+      return MaterialPageRoute(builder: (context) => const SelectZoneView());
 
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());

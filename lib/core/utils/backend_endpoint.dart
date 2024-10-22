@@ -1,3 +1,4 @@
 class BackendEndpoint {
-  static const userCollection = 'users';
+  static const addUserCollection = 'users';
+  static const getUserCollection = 'users';
 }

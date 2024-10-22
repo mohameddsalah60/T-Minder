@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tmart_expiry_date/core/services/custom_bloc_observer.dart';
 import 'package:tmart_expiry_date/core/services/getit_service.dart';
+import 'package:tmart_expiry_date/features/auth/presentation/views/select_zone_view.dart';
 import 'package:tmart_expiry_date/generated/l10n.dart';
 
 import 'core/helper_functions/on_generate_routes.dart';
@@ -42,7 +43,7 @@ class TmartExpiApp extends StatelessWidget {
           supportedLocales: S.delegate.supportedLocales,
           locale: const Locale('ar'),
           debugShowCheckedModeBanner: false,
-          initialRoute: SigninView.routeName,
+          initialRoute: SelectZoneView.routeName,
           theme: ThemeData(
             scaffoldBackgroundColor: Colors.white,
             fontFamily: 'Cairo',

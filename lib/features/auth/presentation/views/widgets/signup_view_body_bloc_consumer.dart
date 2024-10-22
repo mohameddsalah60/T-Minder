@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_dialog_alert.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_loading_indector.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/cubits/signup_cubit/signup_cubit.dart';
+import 'package:tmart_expiry_date/features/auth/presentation/views/select_zone_view.dart';
 
 import 'signup_view_body.dart';
 
@@ -29,6 +30,7 @@ class SignUpViewBodyBlocConsumer extends StatelessWidget {
             text: 'تم انشاء حساب جديد بنجاح',
             type: "success",
           );
+          Navigator.pushReplacementNamed(context, SelectZoneView.routeName);
         }
       },
       builder: (context, state) {

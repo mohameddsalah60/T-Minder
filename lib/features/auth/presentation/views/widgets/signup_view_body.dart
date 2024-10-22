@@ -20,7 +20,7 @@ class SignupViewBody extends StatefulWidget {
 class _SignupViewBodyState extends State<SignupViewBody> {
   final GlobalKey<FormState> fromKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  late String name, email, password;
+  late String name, email, password, phone;
   bool isSelected = false;
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,17 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               ),
               CustomTextFromField(
                 hintText: 'الاسم كامل',
+                keyboardType: TextInputType.text,
+                onSaved: (value) {
+                  name = value!;
+                },
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              CustomTextFromField(
+                hintText: 'رقم الهاتف',
+                keyboardType: TextInputType.phone,
                 onSaved: (value) {
                   name = value!;
                 },
@@ -46,6 +57,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
               ),
               CustomTextFromField(
                 hintText: 'البريد الإلكتروني',
+                keyboardType: TextInputType.emailAddress,
                 onSaved: (value) {
                   email = value!;
                 },
@@ -84,6 +96,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                             name,
                             email,
                             password,
+                            phone,
                           );
                     } else {
                       customDialogAlert(

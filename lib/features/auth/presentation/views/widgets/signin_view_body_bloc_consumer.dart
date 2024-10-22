@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_dialog_alert.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_loading_indector.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/cubits/signin_cubit/signin_cubit.dart';
+import 'package:tmart_expiry_date/features/auth/presentation/views/select_zone_view.dart';
 
 import 'signin_view_body.dart';
 
@@ -23,12 +24,9 @@ class SigninViewBodyBlocConsumer extends StatelessWidget {
             type: "error",
           );
         } else if (state is SigninSuccses) {
-          customDialogAlert(
-            context: context,
-            title: 'Succses',
-            text: 'تم تسجيل الدخول بنجاح',
-            type: 'success',
-          );
+          if (state.userEntity.zone == '') {
+            Navigator.pushReplacementNamed(context, SelectZoneView.routeName);
+          }
         }
       },
       builder: (context, state) {
