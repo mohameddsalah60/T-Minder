@@ -19,4 +19,6 @@ abstract class AuthRepo {
     required String uId,
   });
   Future addUserData({required UserEntity userEntity});
+  Future selectUserZone({required String zone});
+  Future saveUserData({required UserEntity userEntity});
 }

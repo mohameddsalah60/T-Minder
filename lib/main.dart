@@ -5,11 +5,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tmart_expiry_date/core/services/custom_bloc_observer.dart';
 import 'package:tmart_expiry_date/core/services/getit_service.dart';
-import 'package:tmart_expiry_date/features/auth/presentation/views/select_zone_view.dart';
+import 'package:tmart_expiry_date/core/services/shared_preferences_singletone.dart';
 import 'package:tmart_expiry_date/generated/l10n.dart';
 
+import 'core/helper_functions/excute_navigation.dart';
 import 'core/helper_functions/on_generate_routes.dart';
-import 'features/auth/presentation/views/signin_view.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -18,7 +18,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Bloc.observer = CustomBlocObserver();
-
+  Prefs.init();
   setupGetItService();
   runApp(const TmartExpiApp());
 }
@@ -43,7 +43,7 @@ class TmartExpiApp extends StatelessWidget {
           supportedLocales: S.delegate.supportedLocales,
           locale: const Locale('ar'),
           debugShowCheckedModeBanner: false,
-          initialRoute: SelectZoneView.routeName,
+          initialRoute: excuteNaviagtion(),
           theme: ThemeData(
             scaffoldBackgroundColor: Colors.white,
             fontFamily: 'Cairo',

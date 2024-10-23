@@ -1,10 +1,14 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tmart_expiry_date/core/errors/custom_exception.dart';
 import 'package:tmart_expiry_date/core/errors/errors_messages.dart';
 import 'package:tmart_expiry_date/core/errors/failures.dart';
+import 'package:tmart_expiry_date/core/helper_functions/get_user.dart';
 import 'package:tmart_expiry_date/core/services/database_service.dart';
 import 'package:tmart_expiry_date/core/services/firebase_auth_service.dart';
+import 'package:tmart_expiry_date/core/services/shared_preferences_singletone.dart';
 import 'package:tmart_expiry_date/core/utils/backend_endpoint.dart';
 import 'package:tmart_expiry_date/features/auth/data/models/user_model.dart';
 import 'package:tmart_expiry_date/features/auth/domin/entites/user_entity.dart';
@@ -37,6 +41,7 @@ class AuthRepoImpl implements AuthRepo {
         zone: "",
       );
       await addUserData(userEntity: userEntity);
+      await saveUserData(userEntity: userEntity);
       return right(userEntity);
     } on CustomException catch (e) {
       await deleteUser(user);
@@ -84,6 +89,7 @@ class AuthRepoImpl implements AuthRepo {
         await getUserData(uId: user.uid);
       } else {
         await addUserData(userEntity: userEntity);
+        await saveUserData(userEntity: userEntity);
       }
       return right(userEntity);
     } on CustomException catch (e) {
@@ -110,7 +116,7 @@ class AuthRepoImpl implements AuthRepo {
   Future addUserData({required UserEntity userEntity}) async {
     await databaseService.addData(
       path: BackendEndpoint.addUserCollection,
-      data: userEntity.toMap(),
+      data: UserModel.fromEntity(userEntity).toMap(),
       docId: userEntity.uId,
     );
   }
@@ -122,5 +128,34 @@ class AuthRepoImpl implements AuthRepo {
       uId: uId,
     );
     return UserModel.fromJson(userData);
+  }
+
+  @override
+  Future saveUserData({required UserEntity userEntity}) async {
+    var jsonData = jsonEncode(UserModel.fromEntity(userEntity).toMap());
+    await Prefs.setString('userData', jsonData);
+  }
+
+  @override
+  Future selectUserZone({required String zone}) async {
+    try {
+      await databaseService.updateData(
+        path: BackendEndpoint.getUserCollection,
+        uId: getUser().uId,
+        value: {
+          'zone': zone,
+        },
+      );
+      var userEntity = UserEntity(
+        name: getUser().name,
+        email: getUser().email,
+        phone: getUser().phone,
+        uId: getUser().uId,
+        zone: zone,
+      );
+      await saveUserData(userEntity: userEntity);
+    } catch (e) {
+      throw ServerFailures(e.toString());
+    }
   }
 }

@@ -13,4 +13,9 @@ abstract class DatabaseService {
     required String path,
     required String docId,
   });
+  Future<void> updateData({
+    required String path,
+    required String uId,
+    required Map<String, dynamic> value,
+  });
 }

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tmart_expiry_date/core/helper_functions/get_user.dart';
 import 'package:tmart_expiry_date/core/utils/app_colors.dart';
 import 'package:tmart_expiry_date/core/utils/app_text_styles.dart';
+import 'package:tmart_expiry_date/core/widgets/custom_dialog_alert.dart';
 import 'package:tmart_expiry_date/features/auth/data/models/zone_model.dart';
+import 'package:tmart_expiry_date/features/auth/presentation/cubits/select_zone_cubit/select_zone_cubit.dart';
+import 'package:tmart_expiry_date/features/home/presentation/views/home_view.dart';
 
 import 'select_zone_button.dart';
 
@@ -32,6 +37,7 @@ class _SelectZoneViewBodyState extends State<SelectZoneViewBody> {
     ),
   ];
   int indexSelected = 0;
+  String? zone;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -66,6 +72,7 @@ class _SelectZoneViewBodyState extends State<SelectZoneViewBody> {
                   onTap: () {
                     setState(() {
                       indexSelected = index;
+                      zone = zoneList[index].value;
                     });
                   },
                   child: Padding(
@@ -81,7 +88,20 @@ class _SelectZoneViewBodyState extends State<SelectZoneViewBody> {
           ),
           const Spacer(),
           GestureDetector(
-            onTap: () {},
+            onTap: () async {
+              if (zone != null) {
+                if (getUser().zone != zone) {
+                  context.read<SelectZoneCubit>().selectZoneUser(zone: zone!);
+                  Navigator.pushReplacementNamed(context, HomeView.routeName);
+                } else {
+                  customDialogAlert(
+                    context: context,
+                    text: "انت بالفعل في ${zoneList[indexSelected].name}",
+                    type: 'warning',
+                  );
+                }
+              }
+            },
             child: Container(
               width: double.infinity,
               height: MediaQuery.sizeOf(context).height * .085,

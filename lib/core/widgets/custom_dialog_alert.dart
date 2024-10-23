@@ -28,6 +28,8 @@ QuickAlertType typeQuickAlert(String type) {
       return QuickAlertType.info;
     case "error":
       return QuickAlertType.error;
+    case "warning":
+      return QuickAlertType.warning;
     default:
       return QuickAlertType.custom;
   }

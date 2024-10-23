@@ -18,13 +18,33 @@ class UserModel extends UserEntity {
       zone: '',
     );
   }
+
+  factory UserModel.fromEntity(UserEntity user) {
+    return UserModel(
+      name: user.name,
+      email: user.email,
+      uId: user.uId,
+      phone: user.phone,
+      zone: user.zone,
+    );
+  }
   factory UserModel.fromJson(Map<String, dynamic> data) {
     return UserModel(
       name: data['name'],
       email: data['email'],
       uId: data['uId'],
       phone: data['phone'],
-      zone: "",
+      zone: data['zone'],
     );
+  }
+
+  toMap() {
+    return {
+      'name': name,
+      'email': email,
+      'phone': phone,
+      'uId': uId,
+      'zone': zone,
+    };
   }
 }
