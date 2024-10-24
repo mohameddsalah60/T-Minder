@@ -6,7 +6,6 @@ import 'package:tmart_expiry_date/core/utils/app_text_styles.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_dialog_alert.dart';
 import 'package:tmart_expiry_date/features/auth/data/models/zone_model.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/cubits/select_zone_cubit/select_zone_cubit.dart';
-import 'package:tmart_expiry_date/features/home/presentation/views/home_view.dart';
 
 import 'select_zone_button.dart';
 
@@ -92,7 +91,6 @@ class _SelectZoneViewBodyState extends State<SelectZoneViewBody> {
               if (zone != null) {
                 if (getUser().zone != zone) {
                   context.read<SelectZoneCubit>().selectZoneUser(zone: zone!);
-                  Navigator.pushReplacementNamed(context, HomeView.routeName);
                 } else {
                   customDialogAlert(
                     context: context,

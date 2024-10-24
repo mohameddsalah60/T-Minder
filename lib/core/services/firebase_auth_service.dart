@@ -117,7 +117,7 @@ class FirebaseAuthService {
     return firebaseAuthInstance.currentUser != null;
   }
 
-  logoutUser() {
-    firebaseAuthInstance.signOut();
+  Future signOut() async {
+    await firebaseAuthInstance.signOut();
   }
 }
