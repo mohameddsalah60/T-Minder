@@ -41,86 +41,97 @@ class _SelectZoneViewBodyState extends State<SelectZoneViewBody> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
+      child: Stack(
         children: [
-          const SizedBox(
-            height: 64,
-          ),
-          Text(
-            "ايه الزون بتاعتك؟",
-            style: TextStyles.bold16,
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Text(
-            "اختار الزون من المقترحين عشان يقدر يوصلك كل الاشعارات الخاصة بالزون بتاعتك.",
-            style: TextStyles.semiBold14,
-            textAlign: TextAlign.center,
-            maxLines: 2,
-          ),
-          const SizedBox(
-            height: 36,
-          ),
-          Column(
-            children: List.generate(
-              4,
-              (index) {
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      indexSelected = index;
-                      zone = zoneList[index].value;
-                    });
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: SelectZoneButton(
-                      zoneModel: zoneList[index],
-                      isSelected: indexSelected == index,
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 64,
+                ),
+                Text(
+                  "ايه الزون بتاعتك؟",
+                  style: TextStyles.bold16,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                Text(
+                  "اختار الزون من المقترحين عشان يقدر يوصلك كل الاشعارات الخاصة بالزون بتاعتك.",
+                  style: TextStyles.semiBold14,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                ),
+                const SizedBox(
+                  height: 36,
+                ),
+                SizedBox(
+                  height: MediaQuery.sizeOf(context).height * .65,
+                  child: Column(
+                    children: List.generate(
+                      4,
+                      (index) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              indexSelected = index;
+                              zone = zoneList[index].value;
+                            });
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            child: SelectZoneButton(
+                              zoneModel: zoneList[index],
+                              isSelected: indexSelected == index,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
-                );
-              },
+                ),
+              ],
             ),
           ),
-          const Spacer(),
-          GestureDetector(
-            onTap: () async {
-              if (zone != null) {
-                if (getUser().zone != zone) {
-                  context.read<SelectZoneCubit>().selectZoneUser(zone: zone!);
-                } else {
-                  customDialogAlert(
-                    context: context,
-                    text: "انت بالفعل في ${zoneList[indexSelected].name}",
-                    type: 'warning',
-                  );
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: GestureDetector(
+              onTap: () async {
+                if (zone != null) {
+                  if (getUser().zone != zone) {
+                    context.read<SelectZoneCubit>().selectZoneUser(zone: zone!);
+                  } else {
+                    customDialogAlert(
+                      context: context,
+                      text: "انت بالفعل في ${zoneList[indexSelected].name}",
+                      type: 'warning',
+                    );
+                  }
                 }
-              }
-            },
-            child: Container(
-              width: double.infinity,
-              height: MediaQuery.sizeOf(context).height * .085,
-              margin: const EdgeInsets.symmetric(vertical: 8),
-              decoration: BoxDecoration(
-                color: AppColors.primaryColor,
-                borderRadius: BorderRadius.circular(6),
-                border: Border.all(
-                  color: const Color(0xffDDDFDF),
-                  width: 1,
+              },
+              child: Container(
+                width: double.infinity,
+                height: MediaQuery.sizeOf(context).height * .085,
+                margin: const EdgeInsets.symmetric(vertical: 8),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryColor,
+                  borderRadius: BorderRadius.circular(6),
+                  border: Border.all(
+                    color: const Color(0xffDDDFDF),
+                    width: 1,
+                  ),
                 ),
-              ),
-              child: Center(
-                child: Text(
-                  'متابعة',
-                  style: TextStyles.bold14
-                      .copyWith(color: const Color(0xffFFFFFF)),
+                child: Center(
+                  child: Text(
+                    'متابعة',
+                    style: TextStyles.bold14
+                        .copyWith(color: const Color(0xffFFFFFF)),
+                  ),
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );

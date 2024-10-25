@@ -49,7 +49,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                 hintText: 'رقم الهاتف',
                 keyboardType: TextInputType.phone,
                 onSaved: (value) {
-                  name = value!;
+                  phone = value!;
                 },
               ),
               const SizedBox(

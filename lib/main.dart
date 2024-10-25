@@ -18,7 +18,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Bloc.observer = CustomBlocObserver();
-  Prefs.init();
+  await Prefs.init();
   setupGetItService();
   runApp(const TmartExpiApp());
 }

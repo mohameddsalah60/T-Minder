@@ -24,12 +24,6 @@ class SignUpViewBodyBlocConsumer extends StatelessWidget {
             type: "error",
           );
         } else if (state is SignupSuccses) {
-          customDialogAlert(
-            context: context,
-            title: 'Succses',
-            text: 'تم انشاء حساب جديد بنجاح',
-            type: "success",
-          );
           Navigator.pushReplacementNamed(context, SelectZoneView.routeName);
         }
       },
