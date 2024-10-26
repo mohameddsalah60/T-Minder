@@ -4,6 +4,7 @@ import 'package:tmart_expiry_date/features/auth/presentation/views/select_zone_v
 import 'package:tmart_expiry_date/features/auth/presentation/views/signin_view.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/views/signup_view.dart';
 import 'package:tmart_expiry_date/features/home/presentation/views/home_view.dart';
+import 'package:tmart_expiry_date/features/my_products/presentation/views/my_products_view.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings routeSettings) {
   switch (routeSettings.name) {
@@ -16,6 +17,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings routeSettings) {
           builder: (context) => const ForgetPasswordView());
     case SelectZoneView.routeName:
       return MaterialPageRoute(builder: (context) => const SelectZoneView());
+    case MyProductsView.routeName:
+      return MaterialPageRoute(builder: (context) => const MyProductsView());
     case HomeView.routeName:
       return MaterialPageRoute(builder: (context) => const HomeView());
 

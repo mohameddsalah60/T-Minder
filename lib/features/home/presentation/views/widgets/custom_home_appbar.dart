@@ -24,7 +24,9 @@ class CustomHomeAppbar extends StatelessWidget {
           color: const Color(0xffFFFFFF),
         ),
       ),
-      trailing: const NotificationWidget(),
+      trailing: const NotificationWidget(
+        color: Colors.white,
+      ),
     );
   }
 }
