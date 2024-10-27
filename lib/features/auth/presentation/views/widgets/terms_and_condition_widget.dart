@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tmart_expiry_date/core/utils/app_colors.dart';
 import 'package:tmart_expiry_date/core/utils/app_text_styles.dart';
 
-import 'custom_checkbox.dart';
+import '../../../../../core/widgets/custom_checkbox.dart';
 
 class TermsAndConditionWidget extends StatelessWidget {
   const TermsAndConditionWidget(

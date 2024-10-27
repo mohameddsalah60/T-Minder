@@ -10,16 +10,25 @@ class CustomTextFromField extends StatelessWidget {
       this.keyboardType,
       this.suffixIcon,
       this.obscureText = false,
-      this.onSaved});
+      this.onSaved,
+      this.controller,
+      this.enabled = true,
+      this.onChanged});
   final String hintText;
   final TextInputType? keyboardType;
   final Widget? suffixIcon;
   final bool obscureText;
   final void Function(String?)? onSaved;
+  final TextEditingController? controller;
+  final bool? enabled;
+  final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       onSaved: onSaved,
+      enabled: enabled,
+      onChanged: onChanged,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'هذا الحقل مطلوب';
@@ -41,7 +50,7 @@ class CustomTextFromField extends StatelessWidget {
         enabledBorder: buildBorder(),
         border: buildBorder(),
       ),
-      style: TextStyles.semiBold16.copyWith(
+      style: TextStyles.semiBold14.copyWith(
         color: const Color(0xff000000),
       ),
     );

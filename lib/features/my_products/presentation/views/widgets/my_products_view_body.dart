@@ -14,23 +14,25 @@ class MyProductsViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 48,
-          ),
-          GestureDetector(
-            onTap: () async {
-              context.read<MyProductsCubit>().getBarcode();
-            },
-            child: const ScanProductButton(),
-          ),
-          const SizedBox(
-            height: 48,
-          ),
-          const MyProductsWidget(),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 48,
+            ),
+            GestureDetector(
+              onTap: () async {
+                context.read<MyProductsCubit>().getBarcode();
+              },
+              child: const ScanProductButton(),
+            ),
+            const SizedBox(
+              height: 48,
+            ),
+            const MyProductsWidget(),
+          ],
+        ),
       ),
     );
   }

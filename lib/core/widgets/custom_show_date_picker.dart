@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-buildMaterialDatePicker(BuildContext context) async {
+Future<String> customShowDatePicker(BuildContext context) async {
   final DateTime? picked = await showDatePicker(
     context: context,
     initialDate: DateTime.now(),
@@ -9,5 +9,7 @@ buildMaterialDatePicker(BuildContext context) async {
   );
   if (picked != null) {
     return "${picked.year}/${picked.month}/${picked.day}";
+  } else {
+    return '';
   }
 }

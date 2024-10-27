@@ -7,14 +7,16 @@ Future<dynamic> addProductsBottomSheet(BuildContext context,
   return showModalBottomSheet(
     context: context,
     isScrollControlled: true,
+    isDismissible: false,
     builder: (context) {
       return SafeArea(
         child: Container(
           width: MediaQuery.sizeOf(context).width,
-          height: MediaQuery.sizeOf(context).height - 30,
           decoration: const BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(16),
+            ),
           ),
           child: AddProductsBottomSheetBody(
             barcode: barcode,
