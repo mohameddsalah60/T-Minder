@@ -7,3 +7,7 @@ class Failure {
 class ServerFailures extends Failure {
   ServerFailures(super.messages);
 }
+
+class AppFailures extends Failure {
+  AppFailures(super.messages);
+}

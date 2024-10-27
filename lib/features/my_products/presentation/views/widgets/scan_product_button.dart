@@ -4,8 +4,8 @@ import 'package:svg_flutter/svg.dart';
 import 'package:tmart_expiry_date/core/utils/app_images.dart';
 import 'package:tmart_expiry_date/core/utils/app_text_styles.dart';
 
-class AddProductWidget extends StatelessWidget {
-  const AddProductWidget({
+class ScanProductButton extends StatelessWidget {
+  const ScanProductButton({
     super.key,
   });
 

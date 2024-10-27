@@ -39,7 +39,10 @@ class MyProductsWidget extends StatelessWidget {
             children: List.generate(
               5,
               (index) {
-                return const CustomProductItem();
+                return const Padding(
+                  padding: EdgeInsets.only(left: 8),
+                  child: CustomProductItem(),
+                );
               },
             ),
           ),

@@ -13,7 +13,7 @@ class ProductItemSliverList extends StatelessWidget {
       itemCount: 5,
       itemBuilder: (context, index) {
         return const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8),
+          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
           child: CustomProductItem(),
         );
       },

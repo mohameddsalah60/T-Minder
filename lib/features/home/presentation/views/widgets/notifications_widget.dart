@@ -14,7 +14,9 @@ class NotificationWidget extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-            color: const Color(0XFFEEF8ED).withOpacity(.2),
+            color: const Color(0XFFEEF8ED).withOpacity(
+              color == Colors.white ? .2 : 1,
+            ),
             borderRadius: BorderRadiusDirectional.circular(16)),
         child: color == Colors.white
             ? SvgPicture.asset(Assets.assetsImagesNotification)

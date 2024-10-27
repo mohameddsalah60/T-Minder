@@ -22,6 +22,14 @@ class CustomProductItem extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
+        boxShadow: const [
+          BoxShadow(
+            offset: Offset(0, -2),
+            blurRadius: 35,
+            color: Color(0x19000000),
+            spreadRadius: 0,
+          ),
+        ],
         border: Border.all(
           color: const Color(0xffE6E9E9),
           width: 1,
