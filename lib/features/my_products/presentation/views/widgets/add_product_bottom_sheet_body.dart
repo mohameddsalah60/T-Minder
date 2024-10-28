@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tmart_expiry_date/core/utils/app_colors.dart';
-import 'package:tmart_expiry_date/core/utils/app_text_styles.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_button.dart';
-import 'package:tmart_expiry_date/core/widgets/custom_checkbox.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_show_date_picker.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_text_field.dart';
+import 'package:tmart_expiry_date/features/my_products/presentation/views/widgets/note_text_field.dart';
+import 'package:tmart_expiry_date/features/my_products/presentation/views/widgets/qty_text_field.dart';
 
 import 'appbar_bottom_sheet.dart';
+import 'enabled_notification_product.dart';
+import 'show_dropdown_zones.dart';
 
 class AddProductsBottomSheetBody extends StatefulWidget {
   const AddProductsBottomSheetBody({
@@ -25,18 +26,14 @@ class _AddProductsBottomSheetBodyState
     extends State<AddProductsBottomSheetBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  final TextEditingController controllerBarcodeField = TextEditingController();
-  final TextEditingController controllerZoneField = TextEditingController();
-  final TextEditingController controllerQtiField = TextEditingController();
-  final TextEditingController controllerDateField = TextEditingController();
-
-  int qti = 0;
-  List<String> zones = ['زون 1', 'زون 2', 'زون 3', 'زون 4'];
-  @override
-  void initState() {
-    controllerBarcodeField.text = widget.barcode;
-    super.initState();
-  }
+  final TextEditingController barcodeField = TextEditingController();
+  final TextEditingController zoneField = TextEditingController();
+  final TextEditingController qtyField = TextEditingController();
+  final TextEditingController dateField = TextEditingController();
+  final TextEditingController nameField = TextEditingController();
+  final TextEditingController noteField = TextEditingController();
+  bool isNotification = true;
+  int qty = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -56,8 +53,8 @@ class _AddProductsBottomSheetBodyState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomTextFromField(
-                    controller: controllerBarcodeField,
-                    hintText: 'الباركود',
+                    controller: barcodeField,
+                    hintText: barcodeField.text = widget.barcode,
                     enabled: false,
                     keyboardType: TextInputType.number,
                     onSaved: (value) {
@@ -67,67 +64,32 @@ class _AddProductsBottomSheetBodyState
                   const SizedBox(
                     height: 16,
                   ),
-                  const CustomTextFromField(hintText: 'اسم المنتج'),
+                  CustomTextFromField(
+                    hintText: 'اسم المنتج',
+                    controller: nameField,
+                    onChanged: (value) {
+                      nameField.text = value;
+                    },
+                  ),
                   const SizedBox(
                     height: 16,
                   ),
                   Row(
                     children: [
-                      Flexible(
-                        child: CustomTextFromField(
-                          hintText: 'عدد المنتج',
-                          keyboardType: TextInputType.number,
-                          controller: controllerQtiField,
-                          onChanged: (value) {
-                            if (value.isNotEmpty) {
-                              qti = int.tryParse(value) ?? 0;
-                            } else {
-                              qti = 0;
-                            }
-                          },
-                          suffixIcon: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    qti += 1;
-                                    controllerQtiField.text = qti.toString();
-                                  });
-                                },
-                                child: const Icon(
-                                  Icons.arrow_drop_up,
-                                  color: AppColors.primaryColor,
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    if (qti != 0) {
-                                      qti -= 1;
-                                      controllerQtiField.text = qti.toString();
-                                    }
-                                  });
-                                },
-                                child: const Icon(
-                                  Icons.arrow_drop_down,
-                                  color: AppColors.primaryColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                      QtyTextField(controllerQtiField: qtyField),
                       const SizedBox(
                         width: 16,
                       ),
                       Flexible(
                         child: GestureDetector(
-                          onTap: () => showDropdownZones(context),
+                          onTap: () => showDropdownZones(
+                            context,
+                            controller: zoneField,
+                          ),
                           child: CustomTextFromField(
                             hintText: 'الزون',
                             enabled: false,
-                            controller: controllerZoneField,
+                            controller: zoneField,
                             keyboardType: TextInputType.number,
                           ),
                         ),
@@ -137,23 +99,24 @@ class _AddProductsBottomSheetBodyState
                   const SizedBox(
                     height: 16,
                   ),
-                  CustomTextFromField(
-                    hintText: 'تاريخ الانتهاء',
-                    keyboardType: TextInputType.datetime,
-                    controller: controllerDateField,
-                    onSaved: (value) {
-                      if (controllerDateField.text.isNotEmpty) {
-                        value = controllerDateField.text;
-                      }
+                  GestureDetector(
+                    onTap: () async {
+                      var date = await customShowDatePicker(context);
+                      setState(() {
+                        dateField.text = date;
+                      });
                     },
-                    suffixIcon: GestureDetector(
-                      onTap: () async {
-                        var date = await customShowDatePicker(context);
-                        setState(() {
-                          controllerDateField.text = date;
-                        });
+                    child: CustomTextFromField(
+                      hintText: 'تاريخ الانتهاء',
+                      keyboardType: TextInputType.datetime,
+                      controller: dateField,
+                      enabled: false,
+                      onSaved: (value) {
+                        if (dateField.text.isNotEmpty) {
+                          value = dateField.text;
+                        }
                       },
-                      child: const Icon(
+                      suffixIcon: const Icon(
                         Icons.date_range_sharp,
                         color: AppColors.primaryColor,
                       ),
@@ -162,19 +125,29 @@ class _AddProductsBottomSheetBodyState
                   const SizedBox(
                     height: 16,
                   ),
-                  Row(
-                    children: [
-                      CustomCheckbox(onChanged: (value) {}, value: true),
-                      Text(
-                        'تفعيل الاشعارات لهذه المنتج',
-                        style: TextStyles.semiBold14,
-                      ),
-                    ],
+                  NoteTextField(textEditingController: noteField),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  EnabledNotificationProduct(
+                    isEnabled: isNotification,
+                    onChanged: (value) {
+                      setState(() {
+                        isNotification = value!;
+                      });
+                    },
                   ),
                   const SizedBox(
-                    height: 16,
+                    height: 12,
                   ),
-                  const CustomButton(text: 'اضافة'),
+                  CustomButton(
+                    text: 'اضافة',
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                      }
+                    },
+                  ),
                   const SizedBox(
                     height: 12,
                   ),
@@ -192,36 +165,6 @@ class _AddProductsBottomSheetBodyState
           ),
         ],
       ),
-    );
-  }
-
-  void showDropdownZones(
-    BuildContext context,
-  ) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: const Text('اختار الزون'),
-          content: SizedBox(
-            height: 200.h,
-            width: double.maxFinite,
-            child: ListView.builder(
-                itemCount: zones.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(zones[index]),
-                    onTap: () {
-                      setState(() {
-                        controllerZoneField.text = zones[index];
-                      });
-                      Navigator.of(context).pop();
-                    },
-                  );
-                }),
-          ),
-        );
-      },
     );
   }
 }

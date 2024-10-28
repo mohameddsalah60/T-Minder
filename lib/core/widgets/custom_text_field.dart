@@ -13,6 +13,7 @@ class CustomTextFromField extends StatelessWidget {
       this.onSaved,
       this.controller,
       this.enabled = true,
+      this.maxLines = 1,
       this.onChanged});
   final String hintText;
   final TextInputType? keyboardType;
@@ -22,6 +23,7 @@ class CustomTextFromField extends StatelessWidget {
   final TextEditingController? controller;
   final bool? enabled;
   final void Function(String)? onChanged;
+  final int? maxLines;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -29,9 +31,12 @@ class CustomTextFromField extends StatelessWidget {
       onSaved: onSaved,
       enabled: enabled,
       onChanged: onChanged,
+      maxLines: maxLines,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'هذا الحقل مطلوب';
+        } else if (value == '0') {
+          return 'يجب اضافة عدد للمنتج';
         }
         return null;
       },
