@@ -8,7 +8,7 @@ import 'package:tmart_expiry_date/core/widgets/custom_button.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_dialog_alert.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_show_date_picker.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_text_field.dart';
-import 'package:tmart_expiry_date/features/my_products/domin/entites/add_product_input_entity.dart';
+import 'package:tmart_expiry_date/core/entites/products_entity.dart';
 import 'package:tmart_expiry_date/features/my_products/presentation/add_products_cubit/add_products_cubit.dart';
 import 'package:tmart_expiry_date/features/my_products/presentation/views/widgets/note_text_field.dart';
 import 'package:tmart_expiry_date/features/my_products/presentation/views/widgets/qty_text_field.dart';
@@ -16,17 +16,15 @@ import 'package:tmart_expiry_date/features/my_products/presentation/views/widget
 import 'enabled_notification_product.dart';
 import 'show_dropdown_zones.dart';
 
-class AddProductsBottomSheetBody extends StatefulWidget {
-  const AddProductsBottomSheetBody({
+class AddProductsViewBody extends StatefulWidget {
+  const AddProductsViewBody({
     super.key,
   });
   @override
-  State<AddProductsBottomSheetBody> createState() =>
-      _AddProductsBottomSheetBodyState();
+  State<AddProductsViewBody> createState() => _AddProductsViewBodyState();
 }
 
-class _AddProductsBottomSheetBodyState
-    extends State<AddProductsBottomSheetBody> {
+class _AddProductsViewBodyState extends State<AddProductsViewBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   final TextEditingController barcodeField = TextEditingController();
@@ -173,8 +171,7 @@ class _AddProductsBottomSheetBodyState
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
-                          AddProductInputEntity addProductInputEntity =
-                              AddProductInputEntity(
+                          ProductsEntity addProductInputEntity = ProductsEntity(
                             barcode: barcodeField.text,
                             nameProduct: nameField.text,
                             zone: zoneField.text,

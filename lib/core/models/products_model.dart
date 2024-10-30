@@ -1,7 +1,7 @@
-import 'package:tmart_expiry_date/features/my_products/domin/entites/add_product_input_entity.dart';
+import 'package:tmart_expiry_date/core/entites/products_entity.dart';
 
-class AddProductInputModel extends AddProductInputEntity {
-  AddProductInputModel(
+class ProductsModel extends ProductsEntity {
+  ProductsModel(
       {required super.barcode,
       required super.nameProduct,
       required super.nameBy,
@@ -12,9 +12,8 @@ class AddProductInputModel extends AddProductInputEntity {
       required super.note,
       required super.isNotification,
       super.daysLeft});
-  factory AddProductInputModel.fromEntity(
-      AddProductInputEntity addProductInputEntity) {
-    return AddProductInputModel(
+  factory ProductsModel.fromEntity(ProductsEntity addProductInputEntity) {
+    return ProductsModel(
       barcode: addProductInputEntity.barcode,
       nameProduct: addProductInputEntity.nameProduct,
       exp: addProductInputEntity.exp,

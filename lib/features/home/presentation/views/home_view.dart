@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tmart_expiry_date/features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
-import 'package:tmart_expiry_date/features/my_products/presentation/views/my_products_view.dart';
+import 'package:tmart_expiry_date/features/my_products/presentation/views/add_products_view.dart';
 import 'widgets/home_view_body.dart';
 
 class HomeView extends StatefulWidget {

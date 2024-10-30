@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/widgets/custom_dialog_alert.dart';
 import '../../../../../core/widgets/custom_show_snack_bar.dart';
 import '../../add_products_cubit/add_products_cubit.dart';
-import 'add_product_bottom_sheet_body.dart';
+import 'add_products_view_body.dart';
 
 class AddProductsBlocConsumer extends StatelessWidget {
   const AddProductsBlocConsumer({
@@ -40,7 +40,7 @@ class AddProductsBlocConsumer extends StatelessWidget {
                 top: Radius.circular(16),
               ),
             ),
-            child: const AddProductsBottomSheetBody(),
+            child: const AddProductsViewBody(),
           ),
         );
       },
