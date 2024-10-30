@@ -19,9 +19,7 @@ class SignUpViewBodyBlocConsumer extends StatelessWidget {
         if (state is SignupFailure) {
           customDialogAlert(
             context: context,
-            title: 'خطأ',
             text: state.error,
-            type: "error",
           );
         } else if (state is SignupSuccses) {
           Navigator.pushReplacementNamed(context, SelectZoneView.routeName);

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'add_product_bottom_sheet_body.dart';
+import '../../../../../core/services/getit_service.dart';
+import '../../../domin/repos/my_product_repo.dart';
+import '../../add_products_cubit/add_products_cubit.dart';
+import 'add_products_bloc_consumer.dart';
 
 Future<dynamic> addProductsBottomSheet(BuildContext context,
     {required String barcode}) {
@@ -9,19 +13,9 @@ Future<dynamic> addProductsBottomSheet(BuildContext context,
     isScrollControlled: true,
     isDismissible: false,
     builder: (context) {
-      return SafeArea(
-        child: Container(
-          width: MediaQuery.sizeOf(context).width,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(16),
-            ),
-          ),
-          child: AddProductsBottomSheetBody(
-            barcode: barcode,
-          ),
-        ),
+      return BlocProvider(
+        create: (context) => AddProductsCubit(getIt<MyProductRepo>()),
+        child: const AddProductsBlocConsumer(),
       );
     },
   );

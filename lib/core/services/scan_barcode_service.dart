@@ -29,7 +29,7 @@ class ScanBarcodeService {
       }
     } catch (e) {
       throw CustomException(
-        message: 'لقد حدث خطأ ما. الرجاء المحاولة مرة أخرى.',
+        message: 'الرجاء المحاولة مرة أخرى.',
       );
     }
   }

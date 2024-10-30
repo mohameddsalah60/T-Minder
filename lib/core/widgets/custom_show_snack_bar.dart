@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:tmart_expiry_date/core/utils/app_text_styles.dart';
 
 customShowSnackBar(BuildContext context,
     {required String text, Color color = Colors.red}) {
@@ -8,10 +8,7 @@ customShowSnackBar(BuildContext context,
       backgroundColor: color,
       content: Text(
         text,
-        style: TextStyle(
-          fontSize: 16.sp,
-          fontWeight: FontWeight.bold,
-        ),
+        style: TextStyles.semiBold14,
       ),
     ),
   );

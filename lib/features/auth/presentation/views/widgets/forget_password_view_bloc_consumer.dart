@@ -18,15 +18,12 @@ class ForgetPasswordViewBlocConsumer extends StatelessWidget {
         if (state is ForgetPasswordFailure) {
           customDialogAlert(
             context: context,
-            title: 'خطأ',
             text: state.message,
-            type: "error",
           );
         } else {
           customDialogAlert(
             context: context,
             text: 'تم ارسال رمز التحقق للبريد الالكتروني',
-            type: "info",
           );
         }
       },

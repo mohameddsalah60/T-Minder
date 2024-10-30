@@ -105,7 +105,6 @@ class _SelectZoneViewBodyState extends State<SelectZoneViewBody> {
                     customDialogAlert(
                       context: context,
                       text: "انت بالفعل في ${zoneList[indexSelected].name}",
-                      type: 'warning',
                     );
                   }
                 }

@@ -101,9 +101,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
                     } else {
                       customDialogAlert(
                         context: context,
-                        title: 'خطأ',
                         text: "يجب المواففة علي الشروط والاحكام",
-                        type: "error",
                       );
                     }
                   }

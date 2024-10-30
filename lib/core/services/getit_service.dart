@@ -15,6 +15,7 @@ void setupGetItService() {
   getIt.registerSingleton<ScanBarcodeService>(ScanBarcodeService());
   getIt.registerSingleton<MyProductRepo>(MyProductRepoImpl(
     getIt<ScanBarcodeService>(),
+    getIt<FirestoreService>(),
   ));
   getIt.registerSingleton<AuthRepo>(AuthRepoImpl(
     firebaseAuthService: getIt<FirebaseAuthService>(),

@@ -21,9 +21,7 @@ class SigninViewBodyBlocConsumer extends StatelessWidget {
         if (state is SigninFailure) {
           customDialogAlert(
             context: context,
-            title: 'خطأ',
             text: state.error,
-            type: "error",
           );
         } else if (state is SigninSuccses) {
           if (getUser().zone == '') {

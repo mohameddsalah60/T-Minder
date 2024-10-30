@@ -19,7 +19,6 @@ class SelectZoneBlocConsumer extends StatelessWidget {
           customDialogAlert(
             context: context,
             text: state.message,
-            type: 'error',
           );
         } else {
           Navigator.pushReplacementNamed(context, HomeView.routeName);

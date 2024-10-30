@@ -25,11 +25,7 @@ class NoteTextField extends StatelessWidget {
         color: const Color(0xff000000),
       ),
       onSubmitted: (value) {
-        if (value.isNotEmpty) {
-          textEditingController.text = value;
-        } else {
-          textEditingController.text = "لا يوجد";
-        }
+        textEditingController.text = value;
       },
     );
   }

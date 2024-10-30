@@ -1,6 +1,7 @@
 class AddProductInputEntity {
-  final String barcode, nameProduct, nameBy, zone, exp, qti, uId, note;
-  final String? daysLeft;
+  final String barcode, nameProduct, nameBy, zone, exp, qti, uId;
+  final String? note;
+  int? daysLeft;
   final bool isNotification;
   AddProductInputEntity({
     required this.barcode,

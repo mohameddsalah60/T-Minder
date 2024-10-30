@@ -1,36 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:quickalert/quickalert.dart';
+import '../utils/app_text_styles.dart';
 
 void customDialogAlert({
   required BuildContext context,
-  String? title,
   required String text,
-  required String type,
 }) {
-  QuickAlert.show(
-    context: context,
-    type: typeQuickAlert(type),
-    text: text,
-    showConfirmBtn: false,
-    showCancelBtn: false,
-    title: title,
-    autoCloseDuration: const Duration(
-      seconds: 3,
-    ),
-  );
-}
-
-QuickAlertType typeQuickAlert(String type) {
-  switch (type) {
-    case "success":
-      return QuickAlertType.success;
-    case "info":
-      return QuickAlertType.info;
-    case "error":
-      return QuickAlertType.error;
-    case "warning":
-      return QuickAlertType.warning;
-    default:
-      return QuickAlertType.custom;
-  }
+  showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.white),
+              borderRadius: BorderRadius.circular(8)),
+          title: Column(
+            children: [
+              Text(
+                text,
+                style: TextStyles.semiBold14,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        );
+      });
+  Future.delayed(const Duration(seconds: 2), () {
+    Navigator.of(context).pop();
+  });
 }
