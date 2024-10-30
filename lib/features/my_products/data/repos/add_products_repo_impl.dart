@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:tmart_expiry_date/core/errors/custom_exception.dart';
+import 'package:tmart_expiry_date/core/errors/errors_messages.dart';
 import 'package:tmart_expiry_date/core/errors/failures.dart';
 import 'package:tmart_expiry_date/core/services/database_service.dart';
 import 'package:tmart_expiry_date/core/services/scan_barcode_service.dart';
@@ -40,7 +41,7 @@ class AddProductsRepoImpl implements AddProductsRepo {
       return left(ServerFailures(e.message));
     } catch (e) {
       log(e.toString());
-      return left(ServerFailures(e.toString()));
+      return left(ServerFailures(ErrorsMessages.genericErrorMessage));
     }
   }
 

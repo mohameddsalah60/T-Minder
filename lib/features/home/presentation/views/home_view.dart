@@ -32,7 +32,7 @@ class _HomeViewState extends State<HomeView> {
           index: _currentIndex,
           children: const [
             HomeViewBody(),
-            MyProductsView(),
+            AddProductsView(),
           ],
         ),
       ),

@@ -17,8 +17,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings routeSettings) {
           builder: (context) => const ForgetPasswordView());
     case SelectZoneView.routeName:
       return MaterialPageRoute(builder: (context) => const SelectZoneView());
-    case MyProductsView.routeName:
-      return MaterialPageRoute(builder: (context) => const MyProductsView());
+    case AddProductsView.routeName:
+      return MaterialPageRoute(builder: (context) => const AddProductsView());
     case HomeView.routeName:
       return MaterialPageRoute(builder: (context) => const HomeView());
 

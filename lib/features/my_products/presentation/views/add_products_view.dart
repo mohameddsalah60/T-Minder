@@ -9,9 +9,9 @@ import '../../domin/repos/add_products_repo.dart';
 
 import 'widgets/add_products_bloc_consumer.dart';
 
-class MyProductsView extends StatelessWidget {
-  const MyProductsView({super.key});
-  static const routeName = 'my-products';
+class AddProductsView extends StatelessWidget {
+  const AddProductsView({super.key});
+  static const routeName = 'add-products';
   @override
   Widget build(BuildContext context) {
     return SafeArea(

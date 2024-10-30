@@ -187,6 +187,7 @@ class _AddProductsViewBodyState extends State<AddProductsViewBody> {
                           context.read<AddProductsCubit>().addProductInput(
                                 addProductInputEntity: addProductInputEntity,
                               );
+                          FocusScope.of(context).unfocus();
                         }
                       },
                     ),

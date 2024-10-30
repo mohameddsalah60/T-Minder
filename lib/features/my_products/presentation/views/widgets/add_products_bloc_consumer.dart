@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tmart_expiry_date/core/widgets/custom_loading_indector.dart';
 
 import '../../../../../core/widgets/custom_dialog_alert.dart';
 import '../../../../../core/widgets/custom_show_snack_bar.dart';
@@ -31,17 +32,9 @@ class AddProductsBlocConsumer extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return SafeArea(
-          child: Container(
-            width: MediaQuery.sizeOf(context).width,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(16),
-              ),
-            ),
-            child: const AddProductsViewBody(),
-          ),
+        return CustomLoadingIndector(
+          isLoading: state is AddProductsLoading ? true : false,
+          child: const AddProductsViewBody(),
         );
       },
     );
