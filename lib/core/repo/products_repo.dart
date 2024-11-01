@@ -5,7 +5,7 @@ import 'package:tmart_expiry_date/core/errors/failures.dart';
 abstract class ProductsRepo {
   Future<Either<Failure, List<ProductsEntity>>> getProducts();
   Future<Either<Failure, List<ProductsEntity>>> getProductsByFilter(
-      {required String filter});
+      {required String filterValue, required String filter});
   int? updateDaysLeftProduct(
     ProductsEntity product,
   );

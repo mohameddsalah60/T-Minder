@@ -22,9 +22,13 @@ class ProductsCubit extends Cubit<ProductsState> {
     );
   }
 
-  getProductsByFilter({required String filter}) async {
+  getProductsByFilter(
+      {required String filterValue, required String filter}) async {
     emit(ProductsLoading());
-    var result = await productsRepo.getProductsByFilter(filter: filter);
+    var result = await productsRepo.getProductsByFilter(
+      filterValue: filterValue,
+      filter: filter,
+    );
     result.fold(
       (failure) => emit(ProductsFailure(message: failure.messages)),
       (products) {

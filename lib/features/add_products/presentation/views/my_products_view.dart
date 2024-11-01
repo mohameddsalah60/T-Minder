@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tmart_expiry_date/core/products_cubit/products_cubit.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_app_bar.dart';
 
+import '../../../../core/repo/products_repo.dart';
+import '../../../../core/services/getit_service.dart';
 import 'widgets/my_products_view_body.dart';
 
 class MyProductsView extends StatelessWidget {
@@ -15,7 +19,10 @@ class MyProductsView extends StatelessWidget {
           title: 'اضافاتي السابقة',
           onTap: Navigator.of(context).pop,
         ),
-        body: const MyProductsViewBody(),
+        body: BlocProvider(
+          create: (context) => ProductsCubit(getIt<ProductsRepo>()),
+          child: const MyProductsViewBody(),
+        ),
       ),
     );
   }

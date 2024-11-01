@@ -39,12 +39,12 @@ class ProductsRepoImpl implements ProductsRepo {
 
   @override
   Future<Either<Failure, List<ProductsEntity>>> getProductsByFilter(
-      {required String filter}) async {
+      {required String filterValue, required String filter}) async {
     try {
       var data = await databaseService
           .getData(path: BackendEndpoint.productsCollection, query: {
-        'where': 'zone',
-        'isEqualTo': filter,
+        'where': filter,
+        'isEqualTo': filterValue,
         'orderBy': 'daysLeft',
         'descending': false,
       }) as List<Map<String, dynamic>>;

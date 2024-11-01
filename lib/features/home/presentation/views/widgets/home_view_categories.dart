@@ -35,9 +35,8 @@ class _HomeViewCategoriesState extends State<HomeViewCategories> {
                   if (index == 0) {
                     context.read<ProductsCubit>().getProducts();
                   } else {
-                    context
-                        .read<ProductsCubit>()
-                        .getProductsByFilter(filter: entity.name);
+                    context.read<ProductsCubit>().getProductsByFilter(
+                        filter: "zone", filterValue: entity.name);
                   }
                 },
                 child: HomeViewCategoryItem(

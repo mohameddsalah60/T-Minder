@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tmart_expiry_date/core/utils/app_text_styles.dart';
 
 import '../products_cubit/products_cubit.dart';
 import '../utils/app_colors.dart';
@@ -37,8 +38,19 @@ class ProductItemSliverList extends StatelessWidget {
           return SliverToBoxAdapter(
             child: Center(
                 child: state is ProductsLoading
-                    ? const CircularProgressIndicator(
-                        color: AppColors.primaryColor,
+                    ? Column(
+                        children: [
+                          const CircularProgressIndicator(
+                            color: AppColors.primaryColor,
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          Text(
+                            'جاري التحميل',
+                            style: TextStyles.regular16,
+                          ),
+                        ],
                       )
                     : const SizedBox()),
           );
