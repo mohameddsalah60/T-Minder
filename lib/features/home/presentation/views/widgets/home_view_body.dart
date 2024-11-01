@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:tmart_expiry_date/core/widgets/product_item_sliver_list.dart';
 
+import '../../../../../core/widgets/product_item_sliver_list.dart';
 import 'home_view_categories.dart';
 import 'home_view_header.dart';
 
 class HomeViewBody extends StatelessWidget {
-  const HomeViewBody({super.key});
+  const HomeViewBody({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class HomeViewBody extends StatelessWidget {
             ],
           ),
         ),
-        ProductItemSliverList()
+        ProductItemSliverList(),
       ],
     );
   }

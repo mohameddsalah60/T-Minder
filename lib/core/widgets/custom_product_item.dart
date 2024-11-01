@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tmart_expiry_date/core/utils/app_text_styles.dart';
 
-import '../utils/app_colors.dart';
+import '../entites/products_entity.dart';
+import 'days_left_widget.dart';
 import 'title_and_value_row.dart';
+import 'zone_product_widget.dart';
 
 class CustomProductItem extends StatelessWidget {
   const CustomProductItem({
     super.key,
+    required this.productsEntity,
   });
-
+  final ProductsEntity productsEntity;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,70 +43,34 @@ class CustomProductItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Expanded(
+              Expanded(
                 child: TitleAndValueRow(
                   title: 'الباركود :',
-                  value: '066665555555',
+                  value: productsEntity.barcode,
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.only(
-                  top: 6,
-                  bottom: 6,
-                  left: 8,
-                  right: 8,
-                ),
-                decoration: const BoxDecoration(
-                  color: AppColors.primaryColor,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(8),
-                    bottomRight: Radius.circular(8),
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    "زون 4",
-                    style: TextStyles.bold13.copyWith(color: Colors.white),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
+              ZoneProductWidget(
+                daysLeft: productsEntity.daysLeft!,
+                text: productsEntity.zone,
               ),
             ],
           ),
-          const TitleAndValueRow(
+          TitleAndValueRow(
             title: 'اسم المنتج :',
-            value: 'pepsi extra frizzz 600ml',
+            value: productsEntity.nameProduct,
           ),
-          const TitleAndValueRow(
+          TitleAndValueRow(
             title: 'عدد :',
-            value: '150 قطعة',
+            value: '${productsEntity.qti} قطعة',
           ),
-          const TitleAndValueRow(
+          TitleAndValueRow(
             title: 'الانتهاء :',
-            value: '18/5/2025',
+            value: productsEntity.exp,
           ),
           const SizedBox(
             height: 8,
           ),
-          Row(
-            children: [
-              Container(
-                width: 10,
-                height: 10,
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-              const SizedBox(
-                width: 6,
-              ),
-              Text(
-                '6 عدد ايام متبقية',
-                style: TextStyles.bold16,
-              ),
-            ],
-          ),
+          DaysLeftWidget(daysLeft: productsEntity.daysLeft!),
         ],
       ),
     );

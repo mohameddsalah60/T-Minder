@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmart_expiry_date/features/home/domin/entites/zone_category_entity.dart';
 
+import '../../../../../core/products_cubit/products_cubit.dart';
 import 'home_view_categories_item.dart';
 
 class HomeViewCategories extends StatefulWidget {
@@ -30,6 +32,13 @@ class _HomeViewCategoriesState extends State<HomeViewCategories> {
                   setState(() {
                     indexSelected = index;
                   });
+                  if (index == 0) {
+                    context.read<ProductsCubit>().getProducts();
+                  } else {
+                    context
+                        .read<ProductsCubit>()
+                        .getProductsByFilter(filter: entity.name);
+                  }
                 },
                 child: HomeViewCategoryItem(
                   isSelected: indexSelected == index,

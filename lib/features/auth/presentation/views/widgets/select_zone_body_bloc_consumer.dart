@@ -4,7 +4,7 @@ import 'package:tmart_expiry_date/core/widgets/custom_dialog_alert.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_loading_indector.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/cubits/select_zone_cubit/select_zone_cubit.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/views/widgets/select_zone_view_body.dart';
-import 'package:tmart_expiry_date/features/home/presentation/views/home_view.dart';
+import 'package:tmart_expiry_date/features/home/presentation/views/main_view.dart';
 
 class SelectZoneBlocConsumer extends StatelessWidget {
   const SelectZoneBlocConsumer({
@@ -21,7 +21,7 @@ class SelectZoneBlocConsumer extends StatelessWidget {
             text: state.message,
           );
         } else {
-          Navigator.pushReplacementNamed(context, HomeView.routeName);
+          Navigator.pushReplacementNamed(context, MainView.routeName);
         }
       },
       builder: (context, state) {

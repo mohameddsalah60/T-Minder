@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_app_bar.dart';
-import 'package:tmart_expiry_date/features/my_products/presentation/add_products_cubit/add_products_cubit.dart';
+import 'package:tmart_expiry_date/features/add_products/presentation/add_products_cubit/add_products_cubit.dart';
 
 import '../../../../core/services/getit_service.dart';
 import '../../../home/presentation/views/widgets/notifications_widget.dart';

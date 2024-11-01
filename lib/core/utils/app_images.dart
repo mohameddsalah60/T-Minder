@@ -46,6 +46,10 @@ class Assets {
   /// assets/images/icons_bottom_outline/user.svg
   static const String assetsImagesIconsBottomOutlineUser = "assets/images/icons_bottom_outline/user.svg";
 
+  /// Assets for assetsImagesNoDataFound
+  /// assets/images/no-data-found.svg
+  static const String assetsImagesNoDataFound = "assets/images/no-data-found.svg";
+
   /// Assets for assetsImagesNotification
   /// assets/images/notification.svg
   static const String assetsImagesNotification = "assets/images/notification.svg";

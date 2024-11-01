@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:svg_flutter/svg.dart';
+import 'package:tmart_expiry_date/core/helper_functions/calculate_days_left.dart';
 import 'package:tmart_expiry_date/core/helper_functions/get_user.dart';
+import 'package:tmart_expiry_date/core/helper_functions/string_to_date.dart';
 import 'package:tmart_expiry_date/core/utils/app_colors.dart';
 import 'package:tmart_expiry_date/core/utils/app_images.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_button.dart';
@@ -9,9 +11,9 @@ import 'package:tmart_expiry_date/core/widgets/custom_dialog_alert.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_show_date_picker.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_text_field.dart';
 import 'package:tmart_expiry_date/core/entites/products_entity.dart';
-import 'package:tmart_expiry_date/features/my_products/presentation/add_products_cubit/add_products_cubit.dart';
-import 'package:tmart_expiry_date/features/my_products/presentation/views/widgets/note_text_field.dart';
-import 'package:tmart_expiry_date/features/my_products/presentation/views/widgets/qty_text_field.dart';
+import 'package:tmart_expiry_date/features/add_products/presentation/add_products_cubit/add_products_cubit.dart';
+import 'package:tmart_expiry_date/features/add_products/presentation/views/widgets/note_text_field.dart';
+import 'package:tmart_expiry_date/features/add_products/presentation/views/widgets/qty_text_field.dart';
 
 import 'enabled_notification_product.dart';
 import 'show_dropdown_zones.dart';
@@ -170,24 +172,32 @@ class _AddProductsViewBodyState extends State<AddProductsViewBody> {
                       text: 'اضافة',
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          formKey.currentState!.save();
-                          ProductsEntity addProductInputEntity = ProductsEntity(
-                            barcode: barcodeField.text,
-                            nameProduct: nameField.text,
-                            zone: zoneField.text,
-                            exp: dateField.text,
-                            qti: qtyField.text,
-                            note: noteField.text.isEmpty
-                                ? 'لا يوجد'
-                                : noteField.text,
-                            isNotification: isNotification,
-                            nameBy: getUser().name,
-                            uId: getUser().uId,
-                          );
-                          context.read<AddProductsCubit>().addProductInput(
-                                addProductInputEntity: addProductInputEntity,
-                              );
-                          FocusScope.of(context).unfocus();
+                          if (calculateDaysLeft(stringToDate(dateField.text)) <=
+                              90) {
+                            formKey.currentState!.save();
+                            ProductsEntity addProductInputEntity =
+                                ProductsEntity(
+                              barcode: barcodeField.text,
+                              nameProduct: nameField.text,
+                              zone: zoneField.text,
+                              exp: dateField.text,
+                              qti: qtyField.text,
+                              note: noteField.text.isEmpty
+                                  ? 'لا يوجد'
+                                  : noteField.text,
+                              isNotification: isNotification,
+                              nameBy: getUser().name,
+                              uId: getUser().uId,
+                            );
+                            context.read<AddProductsCubit>().addProductInput(
+                                  addProductInputEntity: addProductInputEntity,
+                                );
+                          } else {
+                            customDialogAlert(
+                              context: context,
+                              text: 'لا يمكن اضافة تاريخ اكثر من 3 شهور',
+                            );
+                          }
                         }
                       },
                     ),

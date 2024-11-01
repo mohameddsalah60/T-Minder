@@ -8,8 +8,10 @@ import 'package:tmart_expiry_date/core/services/database_service.dart';
 import 'package:tmart_expiry_date/core/services/scan_barcode_service.dart';
 import 'package:tmart_expiry_date/core/models/products_model.dart';
 import 'package:tmart_expiry_date/core/entites/products_entity.dart';
-import 'package:tmart_expiry_date/features/my_products/domin/repos/add_products_repo.dart';
+import 'package:tmart_expiry_date/core/utils/backend_endpoint.dart';
+import 'package:tmart_expiry_date/features/add_products/domin/repos/add_products_repo.dart';
 
+import '../../../../core/helper_functions/calculate_days_left.dart';
 import '../../../../core/helper_functions/string_to_date.dart';
 
 class AddProductsRepoImpl implements AddProductsRepo {
@@ -24,14 +26,14 @@ class AddProductsRepoImpl implements AddProductsRepo {
         stringToDate(productEntity.exp),
       );
       var isBarcodeExist = await databaseService.checkIfDataExists(
-        path: 'products',
+        path: BackendEndpoint.productsCollection,
         docId: productEntity.barcode,
       );
       if (isBarcodeExist) {
         return left(ServerFailures('هذا المنتج تمت اضافته بالفعل'));
       } else {
         await databaseService.addData(
-          path: 'products',
+          path: BackendEndpoint.productsCollection,
           data: ProductsModel.fromEntity(productEntity).toMap(),
           docId: productEntity.barcode,
         );
@@ -42,16 +44,6 @@ class AddProductsRepoImpl implements AddProductsRepo {
     } catch (e) {
       log(e.toString());
       return left(ServerFailures(ErrorsMessages.genericErrorMessage));
-    }
-  }
-
-  int calculateDaysLeft(DateTime date) {
-    date = DateTime(date.year, date.month, date.day);
-    DateTime nowDate = DateTime.now();
-    if (date.isBefore(nowDate)) {
-      throw CustomException(message: "برجاء ادخال تاريخ صحيح");
-    } else {
-      return (date.difference(nowDate).inHours / 24).round();
     }
   }
 

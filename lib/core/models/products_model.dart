@@ -26,8 +26,21 @@ class ProductsModel extends ProductsEntity {
       nameBy: addProductInputEntity.nameBy,
     );
   }
-
-  toMap() {
+  factory ProductsModel.fromJson(Map<String, dynamic> data) {
+    return ProductsModel(
+      barcode: data["barcode"],
+      nameProduct: data["nameProduct"],
+      nameBy: data["nameBy"],
+      zone: data["zone"],
+      exp: data["exp"],
+      qti: data["qti"],
+      uId: data["uId"],
+      note: data["note"],
+      isNotification: data["isNotification"],
+      daysLeft: data["daysLeft"],
+    );
+  }
+  Map<String, dynamic> toMap() {
     return {
       'barcode': barcode,
       'nameProduct': nameProduct,

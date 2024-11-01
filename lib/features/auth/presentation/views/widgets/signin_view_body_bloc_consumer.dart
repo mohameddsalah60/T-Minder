@@ -5,7 +5,7 @@ import 'package:tmart_expiry_date/core/widgets/custom_dialog_alert.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_loading_indector.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/cubits/signin_cubit/signin_cubit.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/views/select_zone_view.dart';
-import 'package:tmart_expiry_date/features/home/presentation/views/home_view.dart';
+import 'package:tmart_expiry_date/features/home/presentation/views/main_view.dart';
 
 import 'signin_view_body.dart';
 
@@ -27,7 +27,7 @@ class SigninViewBodyBlocConsumer extends StatelessWidget {
           if (getUser().zone == '') {
             Navigator.pushReplacementNamed(context, SelectZoneView.routeName);
           } else {
-            Navigator.pushReplacementNamed(context, HomeView.routeName);
+            Navigator.pushReplacementNamed(context, MainView.routeName);
           }
         }
       },
