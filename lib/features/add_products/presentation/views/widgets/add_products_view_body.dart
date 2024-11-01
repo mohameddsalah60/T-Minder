@@ -12,6 +12,7 @@ import 'package:tmart_expiry_date/core/widgets/custom_show_date_picker.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_text_field.dart';
 import 'package:tmart_expiry_date/core/entites/products_entity.dart';
 import 'package:tmart_expiry_date/features/add_products/presentation/add_products_cubit/add_products_cubit.dart';
+import 'package:tmart_expiry_date/features/add_products/presentation/views/my_products_view.dart';
 import 'package:tmart_expiry_date/features/add_products/presentation/views/widgets/note_text_field.dart';
 import 'package:tmart_expiry_date/features/add_products/presentation/views/widgets/qty_text_field.dart';
 
@@ -204,9 +205,11 @@ class _AddProductsViewBodyState extends State<AddProductsViewBody> {
                     const SizedBox(
                       height: 12,
                     ),
-                    const CustomButton(
+                    CustomButton(
                       text: 'اضافاتي السابقة',
                       backgroundColor: Colors.white,
+                      onPressed: () => Navigator.pushNamed(
+                          context, MyProductsView.routeName),
                     ),
                     const SizedBox(
                       height: 24,

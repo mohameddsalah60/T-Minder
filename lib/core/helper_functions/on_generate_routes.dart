@@ -6,6 +6,8 @@ import 'package:tmart_expiry_date/features/auth/presentation/views/signup_view.d
 import 'package:tmart_expiry_date/features/home/presentation/views/main_view.dart';
 import 'package:tmart_expiry_date/features/add_products/presentation/views/add_products_view.dart';
 
+import '../../features/add_products/presentation/views/my_products_view.dart';
+
 Route<dynamic> onGenerateRoutes(RouteSettings routeSettings) {
   switch (routeSettings.name) {
     case SigninView.routeName:
@@ -19,6 +21,8 @@ Route<dynamic> onGenerateRoutes(RouteSettings routeSettings) {
       return MaterialPageRoute(builder: (context) => const SelectZoneView());
     case AddProductsView.routeName:
       return MaterialPageRoute(builder: (context) => const AddProductsView());
+    case MyProductsView.routeName:
+      return MaterialPageRoute(builder: (context) => const MyProductsView());
     case MainView.routeName:
       return MaterialPageRoute(builder: (context) => const MainView());
 
