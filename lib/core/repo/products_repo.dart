@@ -9,4 +9,6 @@ abstract class ProductsRepo {
   int? updateDaysLeftProduct(
     ProductsEntity product,
   );
+
+  Future<Either<Failure, void>> deleteProduct({required String barcode});
 }

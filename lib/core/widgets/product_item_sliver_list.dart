@@ -6,6 +6,7 @@ import '../products_cubit/products_cubit.dart';
 import '../utils/app_colors.dart';
 import 'custom_no_found_data_widget.dart';
 import 'custom_product_item.dart';
+import 'show_detailes_product.dart';
 
 class ProductItemSliverList extends StatelessWidget {
   const ProductItemSliverList({
@@ -22,8 +23,13 @@ class ProductItemSliverList extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-                child: CustomProductItem(
-                  productsEntity: state.products[index],
+                child: GestureDetector(
+                  onTap: () {
+                    productDetailesView(context, state.products[index]);
+                  },
+                  child: CustomProductItem(
+                    productsEntity: state.products[index],
+                  ),
                 ),
               );
             },

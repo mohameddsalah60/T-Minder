@@ -7,7 +7,6 @@ import 'package:tmart_expiry_date/features/home/presentation/views/main_view.dar
 import 'package:tmart_expiry_date/features/add_products/presentation/views/add_products_view.dart';
 
 import '../../features/add_products/presentation/views/my_products_view.dart';
-import '../views/product_info_view.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings routeSettings) {
   switch (routeSettings.name) {
@@ -24,8 +23,6 @@ Route<dynamic> onGenerateRoutes(RouteSettings routeSettings) {
       return MaterialPageRoute(builder: (context) => const AddProductsView());
     case MyProductsView.routeName:
       return MaterialPageRoute(builder: (context) => const MyProductsView());
-    case ProductInfoView.routeName:
-      return MaterialPageRoute(builder: (context) => const ProductInfoView());
     case MainView.routeName:
       return MaterialPageRoute(builder: (context) => const MainView());
 

@@ -19,3 +19,11 @@ final class ProductsFailure extends ProductsState {
 
   ProductsFailure({required this.message});
 }
+
+final class DeleteProductSuccses extends ProductsState {}
+
+final class DeleteProductFailure extends ProductsState {
+  final String message;
+
+  DeleteProductFailure({required this.message});
+}

@@ -60,4 +60,9 @@ class FirestoreService implements DatabaseService {
       required Map<String, dynamic> value}) async {
     await firestoreService.collection(path).doc(uId).update(value);
   }
+
+  @override
+  Future<void> deleteData({required String path, required String uId}) async {
+    await firestoreService.collection(path).doc(uId).delete();
+  }
 }

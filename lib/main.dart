@@ -10,6 +10,8 @@ import 'package:tmart_expiry_date/generated/l10n.dart';
 
 import 'core/helper_functions/excute_navigation.dart';
 import 'core/helper_functions/on_generate_routes.dart';
+import 'core/products_cubit/products_cubit.dart';
+import 'core/repo/products_repo.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -33,22 +35,25 @@ class TmartExpiApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          localizationsDelegates: const [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: S.delegate.supportedLocales,
-          locale: const Locale('ar'),
-          debugShowCheckedModeBanner: false,
-          initialRoute: excuteNaviagtion(),
-          theme: ThemeData(
-            scaffoldBackgroundColor: Colors.white,
-            fontFamily: 'Cairo',
+        return BlocProvider(
+          create: (context) => ProductsCubit(getIt<ProductsRepo>()),
+          child: MaterialApp(
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            locale: const Locale('ar'),
+            debugShowCheckedModeBanner: false,
+            initialRoute: excuteNaviagtion(),
+            theme: ThemeData(
+              scaffoldBackgroundColor: Colors.white,
+              fontFamily: 'Cairo',
+            ),
+            onGenerateRoute: onGenerateRoutes,
           ),
-          onGenerateRoute: onGenerateRoutes,
         );
       },
     );

@@ -38,6 +38,18 @@ class _AddProductsViewBodyState extends State<AddProductsViewBody> {
   final TextEditingController noteField = TextEditingController();
   bool isNotification = true;
   int qty = 0;
+  @override
+  void dispose() {
+    barcodeField.dispose();
+    zoneField.dispose();
+    qtyField.dispose();
+    dateField.dispose();
+    nameField.dispose();
+    noteField.dispose();
+    FocusScope.of(context).unfocus();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -190,9 +202,18 @@ class _AddProductsViewBodyState extends State<AddProductsViewBody> {
                               nameBy: getUser().name,
                               uId: getUser().uId,
                             );
+
                             context.read<AddProductsCubit>().addProductInput(
                                   addProductInputEntity: addProductInputEntity,
                                 );
+                            noteField.clear();
+                            zoneField.clear();
+                            barcodeField.clear();
+                            nameField.clear();
+                            qtyField.clear();
+                            dateField.clear();
+
+                            FocusScope.of(context).unfocus();
                           } else {
                             customDialogAlert(
                               context: context,

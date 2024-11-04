@@ -23,8 +23,8 @@ class _MainViewState extends State<MainView> {
       _currentIndex = index;
     });
     if (_currentIndex == 0) {
-      _productsCubit
-          .getProducts(); // استدعاء getProducts عند العودة إلى HomeView
+      _productsCubit.getProducts();
+      FocusScope.of(context).unfocus();
     }
   }
 

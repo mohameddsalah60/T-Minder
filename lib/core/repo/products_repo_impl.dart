@@ -80,4 +80,20 @@ class ProductsRepoImpl implements ProductsRepo {
     }
     return daysLeft;
   }
+
+  @override
+  Future<Either<Failure, void>> deleteProduct({required String barcode}) async {
+    try {
+      await databaseService.deleteData(
+        path: BackendEndpoint.productsCollection,
+        uId: barcode,
+      );
+      return right(null);
+    } on CustomException catch (e) {
+      return left(ServerFailures(e.message));
+    } catch (e) {
+      log(e.toString());
+      return left(ServerFailures(ErrorsMessages.genericErrorMessage));
+    }
+  }
 }
