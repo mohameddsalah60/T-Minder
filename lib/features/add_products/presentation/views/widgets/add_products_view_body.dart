@@ -4,11 +4,9 @@ import 'package:svg_flutter/svg.dart';
 import 'package:tmart_expiry_date/core/helper_functions/calculate_days_left.dart';
 import 'package:tmart_expiry_date/core/helper_functions/get_user.dart';
 import 'package:tmart_expiry_date/core/helper_functions/string_to_date.dart';
-import 'package:tmart_expiry_date/core/utils/app_colors.dart';
 import 'package:tmart_expiry_date/core/utils/app_images.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_button.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_dialog_alert.dart';
-import 'package:tmart_expiry_date/core/widgets/custom_show_date_picker.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_text_field.dart';
 import 'package:tmart_expiry_date/core/entites/products_entity.dart';
 import 'package:tmart_expiry_date/features/add_products/presentation/add_products_cubit/add_products_cubit.dart';
@@ -16,6 +14,7 @@ import 'package:tmart_expiry_date/features/add_products/presentation/views/my_pr
 import 'package:tmart_expiry_date/features/add_products/presentation/views/widgets/note_text_field.dart';
 import 'package:tmart_expiry_date/features/add_products/presentation/views/widgets/qty_text_field.dart';
 
+import 'date_time_form_field.dart';
 import 'enabled_notification_product.dart';
 import 'show_dropdown_zones.dart';
 
@@ -33,21 +32,19 @@ class _AddProductsViewBodyState extends State<AddProductsViewBody> {
   final TextEditingController barcodeField = TextEditingController();
   final TextEditingController zoneField = TextEditingController();
   final TextEditingController qtyField = TextEditingController();
-  final TextEditingController dateField = TextEditingController();
   final TextEditingController nameField = TextEditingController();
   final TextEditingController noteField = TextEditingController();
   bool isNotification = true;
   int qty = 0;
+  String? dateField;
   @override
   void dispose() {
     barcodeField.dispose();
     zoneField.dispose();
     qtyField.dispose();
-    dateField.dispose();
     nameField.dispose();
     noteField.dispose();
     FocusScope.of(context).unfocus();
-
     super.dispose();
   }
 
@@ -140,28 +137,14 @@ class _AddProductsViewBodyState extends State<AddProductsViewBody> {
                     const SizedBox(
                       height: 16,
                     ),
-                    GestureDetector(
-                      onTap: () async {
-                        var date = await customShowDatePicker(context);
+                    CustomDateTimeField(
+                      onChanged: (DateTime? value) {
                         setState(() {
-                          dateField.text = date;
+                          dateField = value != null
+                              ? "${value.year}/${value.month}/${value.day}"
+                              : '';
                         });
                       },
-                      child: CustomTextFromField(
-                        hintText: 'تاريخ الانتهاء',
-                        keyboardType: TextInputType.datetime,
-                        controller: dateField,
-                        enabled: false,
-                        onSaved: (value) {
-                          if (dateField.text.isNotEmpty) {
-                            value = dateField.text;
-                          }
-                        },
-                        suffixIcon: const Icon(
-                          Icons.date_range_sharp,
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
                     ),
                     const SizedBox(
                       height: 16,
@@ -185,15 +168,16 @@ class _AddProductsViewBodyState extends State<AddProductsViewBody> {
                       text: 'اضافة',
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          if (calculateDaysLeft(stringToDate(dateField.text)) <=
-                              90) {
+                          DateTime date = stringToDate(dateField!);
+
+                          if (calculateDaysLeft(date) <= 180) {
                             formKey.currentState!.save();
                             ProductsEntity addProductInputEntity =
                                 ProductsEntity(
                               barcode: barcodeField.text,
                               nameProduct: nameField.text,
                               zone: zoneField.text,
-                              exp: dateField.text,
+                              exp: dateField!,
                               qti: qtyField.text,
                               note: noteField.text.isEmpty
                                   ? 'لا يوجد'
@@ -211,13 +195,11 @@ class _AddProductsViewBodyState extends State<AddProductsViewBody> {
                             barcodeField.clear();
                             nameField.clear();
                             qtyField.clear();
-                            dateField.clear();
-
                             FocusScope.of(context).unfocus();
                           } else {
                             customDialogAlert(
                               context: context,
-                              text: 'لا يمكن اضافة تاريخ اكثر من 3 شهور',
+                              text: 'لا يمكن اضافة تاريخ اكثر من 6 شهور',
                             );
                           }
                         }

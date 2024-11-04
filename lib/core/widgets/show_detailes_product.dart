@@ -34,5 +34,8 @@ void productDetailesView(BuildContext context, ProductsEntity product) {
         ),
       );
     },
-  );
+  ).whenComplete(() {
+    FocusManager.instance.primaryFocus
+        ?.unfocus(); // إغلاق لوحة المفاتيح عند إغلاق الـ Bottom Sheet
+  });
 }

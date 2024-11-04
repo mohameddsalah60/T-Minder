@@ -24,7 +24,6 @@ class _MainViewState extends State<MainView> {
     });
     if (_currentIndex == 0) {
       _productsCubit.getProducts();
-      FocusScope.of(context).unfocus();
     }
   }
 

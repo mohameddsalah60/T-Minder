@@ -29,6 +29,9 @@ class CustomTextFromField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       onSaved: onSaved,
+      onEditingComplete: () {
+        FocusScope.of(context).unfocus(); // إغلاق لوحة المفاتيح
+      },
       enabled: enabled,
       onChanged: onChanged,
       maxLines: maxLines,

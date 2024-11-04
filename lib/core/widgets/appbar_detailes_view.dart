@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppBarDetailesView extends StatelessWidget {
@@ -10,6 +11,7 @@ class AppBarDetailesView extends StatelessWidget {
     return GestureDetector(
       onVerticalDragUpdate: (scroll) {
         if (scroll.delta.dy > 0) {
+          SystemChannels.textInput.invokeMethod('TextInput.hide');
           Navigator.pop(context);
         }
       },
