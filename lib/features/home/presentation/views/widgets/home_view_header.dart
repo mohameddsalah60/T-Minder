@@ -23,7 +23,7 @@ class HomeViewHeader extends StatelessWidget {
       child: const Column(
         children: [
           SizedBox(
-            height: 24,
+            height: 34,
           ),
           CustomHomeAppbar(),
           SizedBox(

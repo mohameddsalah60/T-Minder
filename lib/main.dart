@@ -23,8 +23,8 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Bloc.observer = CustomBlocObserver();
+  await Prefs.init();
   Future.wait([
-    Prefs.init(),
     findSystemLocale(),
     NotificationsService.init(),
     WorkmanagerService.init(),
