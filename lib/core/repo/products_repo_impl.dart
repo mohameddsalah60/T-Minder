@@ -27,8 +27,15 @@ class ProductsRepoImpl implements ProductsRepo {
       }) as List<Map<String, dynamic>>;
       List<ProductsEntity> products = data.map((e) {
         e["daysLeft"] = updateDaysLeftProduct(ProductsModel.fromJson(e));
+        if (e["daysLeft"] <= 0) {
+          databaseService.deleteData(
+            path: BackendEndpoint.productsCollection,
+            uId: e["barcode"],
+          );
+        }
         return ProductsModel.fromJson(e);
       }).toList();
+
       return right(products);
     } on CustomException catch (e) {
       return left(ServerFailures(e.message));
@@ -78,6 +85,7 @@ class ProductsRepoImpl implements ProductsRepo {
         },
       );
     }
+
     return daysLeft;
   }
 

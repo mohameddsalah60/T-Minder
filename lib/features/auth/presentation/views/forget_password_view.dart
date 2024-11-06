@@ -14,15 +14,13 @@ class ForgetPasswordView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ForgetPasswordCubit(getIt<AuthRepo>()),
-      child: SafeArea(
-        child: Scaffold(
-          appBar: buildAppBar(
-            context,
-            title: 'نسيان كلمة المرور',
-            onTap: () => Navigator.of(context).pop(),
-          ),
-          body: const ForgetPasswordViewBlocConsumer(),
+      child: Scaffold(
+        appBar: buildAppBar(
+          context,
+          title: 'نسيان كلمة المرور',
+          onTap: () => Navigator.of(context).pop(),
         ),
+        body: const SafeArea(child: ForgetPasswordViewBlocConsumer()),
       ),
     );
   }

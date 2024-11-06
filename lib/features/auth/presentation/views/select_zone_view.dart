@@ -14,10 +14,8 @@ class SelectZoneView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SelectZoneCubit(getIt<AuthRepo>()),
-      child: const SafeArea(
-        child: Scaffold(
-          body: SelectZoneBlocConsumer(),
-        ),
+      child: const Scaffold(
+        body: SafeArea(child: SelectZoneBlocConsumer()),
       ),
     );
   }

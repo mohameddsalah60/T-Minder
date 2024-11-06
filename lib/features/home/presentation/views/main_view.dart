@@ -37,22 +37,20 @@ class _MainViewState extends State<MainView> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        bottomNavigationBar: CustomBottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: _onBottomNavTapped,
-        ),
-        body: IndexedStack(
-          index: _currentIndex,
-          children: [
-            BlocProvider.value(
-              value: _productsCubit,
-              child: const HomeViewBody(),
-            ),
-            const AddProductsView(),
-          ],
-        ),
+    return Scaffold(
+      bottomNavigationBar: CustomBottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: _onBottomNavTapped,
+      ),
+      body: IndexedStack(
+        index: _currentIndex,
+        children: [
+          BlocProvider.value(
+            value: _productsCubit,
+            child: const HomeViewBody(),
+          ),
+          const AddProductsView(),
+        ],
       ),
     );
   }

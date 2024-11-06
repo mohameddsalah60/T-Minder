@@ -8,6 +8,7 @@ import 'package:tmart_expiry_date/core/services/database_service.dart';
 import 'package:tmart_expiry_date/core/services/scan_barcode_service.dart';
 import 'package:tmart_expiry_date/core/models/products_model.dart';
 import 'package:tmart_expiry_date/core/entites/products_entity.dart';
+import 'package:tmart_expiry_date/core/services/workmanager_service.dart';
 import 'package:tmart_expiry_date/core/utils/backend_endpoint.dart';
 import 'package:tmart_expiry_date/features/add_products/domin/repos/add_products_repo.dart';
 
@@ -37,6 +38,7 @@ class AddProductsRepoImpl implements AddProductsRepo {
           data: ProductsModel.fromEntity(productEntity).toMap(),
           docId: productEntity.barcode,
         );
+        WorkmanagerService.registerProductNotifications(productEntity);
         return right(null);
       }
     } on CustomException catch (e) {
@@ -56,4 +58,42 @@ class AddProductsRepoImpl implements AddProductsRepo {
       return left(AppFailures(e.message));
     }
   }
+
+  // void scheduleProductNotification(ProductsEntity productEntity) {
+  //   final expiryDate = stringToDate(productEntity.exp);
+  //   final daysLeft = calculateDaysLeft(expiryDate);
+
+  //   // جدولة الإشعار بناءً على الأيام المتبقية
+  //   if (daysLeft <= 30 && daysLeft > 7) {
+  //     // إشعار قبل شهر
+  //     scheduleNotification(expiryDate, 30, productEntity.barcode);
+  //   } else if (daysLeft <= 7 && daysLeft > 2) {
+  //     // إشعار قبل أسبوع
+  //     scheduleNotification(expiryDate, 7, productEntity.barcode);
+  //   } else if (daysLeft <= 2) {
+  //     // إشعار كل يومين
+  //     scheduleNotification(expiryDate, 2, productEntity.barcode);
+  //   }
+  // }
+
+  // void scheduleNotification(
+  //     DateTime expiryDate, int notificationInterval, String barcode) async {
+  //   final notificationTime =
+  //       expiryDate.subtract(Duration(days: notificationInterval));
+
+  //   // جدولة الإشعار باستخدام WorkManager
+  //   await Workmanager().registerOneOffTask(
+  //     "background_id1",
+  //     "productNotification",
+  //     initialDelay: notificationTime.isBefore(DateTime.now())
+  //         ? Duration.zero
+  //         : notificationTime
+  //             .difference(DateTime.now()), // تأخير العمل بناءً على الوقت
+  //     inputData: {
+  //       'expiry_date': expiryDate.toIso8601String(),
+  //       'barcode': barcode,
+  //     },
+  //   );
+  //   print('done');
+  // }
 }

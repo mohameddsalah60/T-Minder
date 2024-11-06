@@ -12,17 +12,15 @@ class MyProductsView extends StatelessWidget {
   static const routeName = 'my-products';
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: buildAppBar(
-          context,
-          title: 'اضافاتي السابقة',
-          onTap: Navigator.of(context).pop,
-        ),
-        body: BlocProvider(
-          create: (context) => ProductsCubit(getIt<ProductsRepo>()),
-          child: const MyProductsViewBody(),
-        ),
+    return Scaffold(
+      appBar: buildAppBar(
+        context,
+        title: 'اضافاتي السابقة',
+        onTap: Navigator.of(context).pop,
+      ),
+      body: BlocProvider(
+        create: (context) => ProductsCubit(getIt<ProductsRepo>()),
+        child: const SafeArea(child: MyProductsViewBody()),
       ),
     );
   }

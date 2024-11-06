@@ -14,18 +14,16 @@ class AddProductsView extends StatelessWidget {
   static const routeName = 'add-products';
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: buildAppBar(context, title: 'اضافة منتج جديد', actions: [
-          const Padding(
-            padding: EdgeInsets.only(left: 12.0),
-            child: NotificationWidget(),
-          ),
-        ]),
-        body: BlocProvider(
-          create: (context) => AddProductsCubit(getIt<AddProductsRepo>()),
-          child: const AddProductsBlocConsumer(),
+    return Scaffold(
+      appBar: buildAppBar(context, title: 'اضافة منتج جديد', actions: [
+        const Padding(
+          padding: EdgeInsets.only(left: 12.0),
+          child: NotificationWidget(),
         ),
+      ]),
+      body: BlocProvider(
+        create: (context) => AddProductsCubit(getIt<AddProductsRepo>()),
+        child: const SafeArea(child: AddProductsBlocConsumer()),
       ),
     );
   }

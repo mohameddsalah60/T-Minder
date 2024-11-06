@@ -13,6 +13,8 @@ import 'core/helper_functions/excute_navigation.dart';
 import 'core/helper_functions/on_generate_routes.dart';
 import 'core/products_cubit/products_cubit.dart';
 import 'core/repo/products_repo.dart';
+import 'core/services/notifications_service.dart';
+import 'core/services/workmanager_service.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -24,6 +26,8 @@ void main() async {
   Future.wait([
     Prefs.init(),
     findSystemLocale(),
+    NotificationsService.init(),
+    WorkmanagerService.init(),
   ]);
 
   setupGetItService();

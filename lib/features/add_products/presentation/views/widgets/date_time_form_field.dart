@@ -38,8 +38,6 @@ class CustomDateTimeField extends StatelessWidget {
       validator: (value) {
         if (value == null) {
           return 'هذا الحقل مطلوب';
-        } else if (value.isBefore(DateTime.now())) {
-          return 'ادخل تاريخ صلاحيه حديث';
         }
         return null;
       },

@@ -38,6 +38,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
+  flutter_local_notifications: ^18.0.0
   flutter_localizations:
     sdk: flutter
   flutter_screenutil: ^5.9.3
@@ -47,6 +48,8 @@ dependencies:
   modal_progress_hud_nsn: ^0.5.1
   shared_preferences: ^2.3.2
   svg_flutter: ^0.0.1
+  timezone: ^0.9.4
+  workmanager: ^0.5.2
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1
   flutter_lints: ^4.0.0

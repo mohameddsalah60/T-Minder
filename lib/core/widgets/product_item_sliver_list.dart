@@ -24,7 +24,7 @@ class ProductItemSliverList extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                 child: GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     productDetailesView(context, state.products[index]);
                   },
                   child: CustomProductItem(
