@@ -4,7 +4,7 @@ import 'package:tmart_expiry_date/core/widgets/custom_app_bar.dart';
 import 'package:tmart_expiry_date/features/add_products/presentation/add_products_cubit/add_products_cubit.dart';
 
 import '../../../../core/services/getit_service.dart';
-import '../../../home/presentation/views/widgets/notifications_widget.dart';
+import '../../../home/presentation/views/widgets/notifications_button_widget.dart';
 import '../../domin/repos/add_products_repo.dart';
 
 import 'widgets/add_products_bloc_consumer.dart';

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmart_expiry_date/features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
 import 'package:tmart_expiry_date/features/add_products/presentation/views/add_products_view.dart';
 import '../../../../core/products_cubit/products_cubit.dart';
-import '../../../../core/repo/products_repo.dart';
+import '../../../../core/repos/products_repo.dart';
 import '../../../../core/services/getit_service.dart';
 import 'widgets/home_view_body.dart';
 

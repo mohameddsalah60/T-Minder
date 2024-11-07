@@ -12,7 +12,7 @@ import 'package:tmart_expiry_date/generated/l10n.dart';
 import 'core/helper_functions/excute_navigation.dart';
 import 'core/helper_functions/on_generate_routes.dart';
 import 'core/products_cubit/products_cubit.dart';
-import 'core/repo/products_repo.dart';
+import 'core/repos/products_repo.dart';
 import 'core/services/notifications_service.dart';
 import 'core/services/workmanager_service.dart';
 import 'firebase_options.dart';

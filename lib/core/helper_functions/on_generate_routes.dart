@@ -7,7 +7,7 @@ import 'package:tmart_expiry_date/features/home/presentation/views/main_view.dar
 import 'package:tmart_expiry_date/features/add_products/presentation/views/add_products_view.dart';
 
 import '../../features/add_products/presentation/views/my_products_view.dart';
-import '../../features/notification/presentation/views/notification_view.dart';
+import '../../features/notifications/presentation/views/notification_view.dart';
 
 Route<dynamic> onGenerateRoutes(RouteSettings routeSettings) {
   switch (routeSettings.name) {

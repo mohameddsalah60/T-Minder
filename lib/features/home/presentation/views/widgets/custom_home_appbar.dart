@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tmart_expiry_date/core/helper_functions/get_user.dart';
 import 'package:tmart_expiry_date/core/utils/app_text_styles.dart';
-import 'package:tmart_expiry_date/features/home/presentation/views/widgets/notifications_widget.dart';
+import 'package:tmart_expiry_date/features/home/presentation/views/widgets/notifications_button_widget.dart';
 
 class CustomHomeAppbar extends StatelessWidget {
   const CustomHomeAppbar({

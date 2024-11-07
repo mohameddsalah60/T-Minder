@@ -9,10 +9,18 @@ class FirestoreService implements DatabaseService {
   Future<void> addData({
     required String path,
     String? docId,
+    String? subPath,
     required Map<String, dynamic> data,
   }) async {
     if (docId != null) {
       await firestoreService.collection(path).doc(docId).set(data);
+    }
+    if (subPath != null) {
+      await firestoreService
+          .collection(path)
+          .doc(docId)
+          .collection(subPath)
+          .add(data);
     } else {
       await firestoreService.collection(path).add(data);
     }
@@ -22,11 +30,20 @@ class FirestoreService implements DatabaseService {
   Future<dynamic> getData({
     required String path,
     String? uId,
+    String? subPath,
     Map<String, dynamic>? query,
   }) async {
     if (uId != null) {
       var data = await firestoreService.collection(path).doc(uId).get();
       return data.data();
+    }
+    if (subPath != null && uId != null) {
+      var data = await firestoreService
+          .collection(path)
+          .doc(uId)
+          .collection(subPath)
+          .get();
+      return data.docs.map((e) => e.data());
     } else {
       Query<Map<String, dynamic>> data = firestoreService.collection(path);
       if (query != null) {

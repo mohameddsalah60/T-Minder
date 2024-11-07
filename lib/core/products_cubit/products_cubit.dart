@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmart_expiry_date/core/entites/products_entity.dart';
-import 'package:tmart_expiry_date/core/repo/products_repo.dart';
+import 'package:tmart_expiry_date/core/repos/products_repo.dart';
 
 part 'products_state.dart';
 

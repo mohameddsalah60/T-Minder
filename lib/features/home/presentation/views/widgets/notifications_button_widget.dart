@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:svg_flutter/svg.dart';
 import 'package:tmart_expiry_date/core/utils/app_images.dart';
-import 'package:tmart_expiry_date/features/notification/presentation/views/notification_view.dart';
+import 'package:tmart_expiry_date/features/notifications/presentation/views/notification_view.dart';
 
 class NotificationWidget extends StatelessWidget {
   const NotificationWidget({

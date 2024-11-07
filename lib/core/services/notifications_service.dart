@@ -5,7 +5,6 @@ import 'package:timezone/data/latest.dart' as tz;
 class NotificationsService {
   static FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
-
   static void Function(NotificationResponse notificationResponse)? onTap;
 
   // Initialize the notification plugin
@@ -83,8 +82,8 @@ class NotificationsService {
     );
   }
 
-  static Future<void> showBasicNotification(
-      {String? title, String? body, int? id}) async {
+  Future<void> showBasicNotification(
+      {String? title, required String body, int? id}) async {
     NotificationDetails notificationDetails = const NotificationDetails(
       android: AndroidNotificationDetails(
         'Id_1',
@@ -96,7 +95,7 @@ class NotificationsService {
     await flutterLocalNotificationsPlugin.show(
       id ?? 0,
       title ?? 'تنبيهات الصلاحية',
-      body ?? 'إشعارات تنبيه عن قرب انتهاء الصلاحية',
+      body,
       notificationDetails,
     );
   }
