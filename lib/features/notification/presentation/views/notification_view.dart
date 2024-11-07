@@ -12,9 +12,11 @@ class NotificationView extends StatelessWidget {
       appBar: buildAppBar(
         context,
         title: 'الاشعارات',
-        onTap: () => Navigator.of(context).pop,
+        onTap: Navigator.of(context).pop,
       ),
-      body: const SafeArea(child: NotificationViewBody()),
+      body: const SafeArea(
+        child: NotificationViewBody(),
+      ),
     );
   }
 }
