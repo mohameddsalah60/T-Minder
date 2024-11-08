@@ -26,6 +26,8 @@ void customDialogAlert({
         );
       });
   Future.delayed(const Duration(seconds: 2), () {
-    Navigator.of(context).pop();
+    if (context.mounted) {
+      Navigator.of(context).pop();
+    }
   });
 }

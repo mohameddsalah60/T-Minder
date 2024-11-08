@@ -100,7 +100,9 @@ class _SelectZoneViewBodyState extends State<SelectZoneViewBody> {
               onTap: () async {
                 if (zone != null) {
                   if (getUser().zone != zone) {
-                    context.read<SelectZoneCubit>().selectZoneUser(zone: zone!);
+                    await context
+                        .read<SelectZoneCubit>()
+                        .selectZoneUser(zone: zone!);
                   } else {
                     customDialogAlert(
                       context: context,

@@ -13,23 +13,18 @@ class SelectZoneBlocConsumer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<SelectZoneCubit, SelectZoneState>(
+    return BlocListener<SelectZoneCubit, SelectZoneState>(
       listener: (context, state) {
         if (state is SelectZoneFailure) {
           customDialogAlert(
             context: context,
             text: state.message,
           );
-        } else {
-          Navigator.pushReplacementNamed(context, MainView.routeName);
+        } else if (state is SelectZoneSuccses) {
+          Navigator.of(context).pushReplacementNamed(MainView.routeName);
         }
       },
-      builder: (context, state) {
-        return CustomLoadingIndector(
-          isLoading: state is SelectZoneLoading ? true : false,
-          child: const SelectZoneViewBody(),
-        );
-      },
+      child: const SelectZoneViewBody(),
     );
   }
 }

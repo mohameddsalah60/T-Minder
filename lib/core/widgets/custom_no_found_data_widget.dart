@@ -7,8 +7,9 @@ import '../utils/app_text_styles.dart';
 class CustomNoFoundDataWidget extends StatelessWidget {
   const CustomNoFoundDataWidget({
     super.key,
+    this.data,
   });
-
+  final String? data;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,7 +18,7 @@ class CustomNoFoundDataWidget extends StatelessWidget {
             height: MediaQuery.sizeOf(context).height * .35,
             child: SvgPicture.asset(Assets.assetsImagesNoDataFound)),
         Text(
-          'لا يوجد بيانات في الوقت الحالي',
+          data ?? 'لا يوجد بيانات في الوقت الحالي',
           style: TextStyles.semiBold14,
         ),
       ],

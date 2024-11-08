@@ -17,3 +17,5 @@ final class NotificationsSuccsess extends NotificationsState {
 
   NotificationsSuccsess({required this.notifications});
 }
+
+final class NoFoundNotifications extends NotificationsState {}

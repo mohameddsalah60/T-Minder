@@ -20,10 +20,15 @@ class NotificationsCubit extends Cubit<NotificationsState> {
     emit(NotificationsLoading());
     var result = await notificationsRepo.getNotifications();
     result.fold(
-      (failure) => emit(NotificationsFailure(message: failure.messages)),
-      (notifications) => emit(
-        NotificationsSuccsess(notifications: notifications),
-      ),
-    );
+        (failure) => emit(NotificationsFailure(message: failure.messages)),
+        (notifications) {
+      if (notifications.isNotEmpty) {
+        emit(
+          NotificationsSuccsess(notifications: notifications),
+        );
+      } else {
+        emit(NoFoundNotifications());
+      }
+    });
   }
 }

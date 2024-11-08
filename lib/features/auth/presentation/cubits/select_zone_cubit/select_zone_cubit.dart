@@ -6,10 +6,10 @@ part 'select_zone_state.dart';
 class SelectZoneCubit extends Cubit<SelectZoneState> {
   SelectZoneCubit(this.authRepo) : super(SelectZoneInitial());
   final AuthRepo authRepo;
-  selectZoneUser({required String zone}) {
-    emit(SelectZoneLoading());
+  Future<void> selectZoneUser({required String zone}) async {
+    // emit(SelectZoneLoading());
     try {
-      authRepo.selectUserZone(zone: zone);
+      await authRepo.selectUserZone(zone: zone);
       emit(SelectZoneSuccses());
     } catch (e) {
       emit(SelectZoneFailure(message: e.toString()));

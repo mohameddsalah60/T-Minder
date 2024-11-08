@@ -12,7 +12,7 @@ class NotificationViewBody extends StatelessWidget {
   final List<NotificationsEntity> notificationsEntity;
   @override
   Widget build(BuildContext context) {
-    context.read<NotificationsCubit>().save();
+    // context.read<NotificationsCubit>().save();
     return CustomScrollView(
       slivers: [
         SliverToBoxAdapter(

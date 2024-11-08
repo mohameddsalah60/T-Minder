@@ -24,10 +24,13 @@ class SigninViewBodyBlocConsumer extends StatelessWidget {
             text: state.error,
           );
         } else if (state is SigninSuccses) {
-          if (getUser().zone == '') {
-            Navigator.pushReplacementNamed(context, SelectZoneView.routeName);
-          } else {
-            Navigator.pushReplacementNamed(context, MainView.routeName);
+          if (context.mounted) {
+            // تحقق من أن الـ widget لا يزال موجودًا
+            if (getUser().zone == '') {
+              Navigator.pushReplacementNamed(context, SelectZoneView.routeName);
+            } else {
+              Navigator.pushReplacementNamed(context, MainView.routeName);
+            }
           }
         }
       },

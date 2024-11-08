@@ -14,8 +14,7 @@ class FirestoreService implements DatabaseService {
   }) async {
     if (docId != null) {
       await firestoreService.collection(path).doc(docId).set(data);
-    }
-    if (subPath != null) {
+    } else if (subPath != null) {
       await firestoreService
           .collection(path)
           .doc(docId)
