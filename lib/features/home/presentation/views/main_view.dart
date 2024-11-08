@@ -5,6 +5,7 @@ import 'package:tmart_expiry_date/features/add_products/presentation/views/add_p
 import '../../../../core/products_cubit/products_cubit.dart';
 import '../../../../core/repos/products_repo.dart';
 import '../../../../core/services/getit_service.dart';
+import '../../../profile/presentation/views/profile_view.dart';
 import 'widgets/home_view_body.dart';
 
 class MainView extends StatefulWidget {
@@ -50,6 +51,7 @@ class _MainViewState extends State<MainView> {
             child: const HomeViewBody(),
           ),
           const AddProductsView(),
+          const ProfileView()
         ],
       ),
     );
