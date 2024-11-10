@@ -8,7 +8,7 @@ class InActiveItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SvgPicture.asset(
       image,
-      height: MediaQuery.sizeOf(context).height * .024,
+      height: MediaQuery.sizeOf(context).height * .026,
     );
   }
 }

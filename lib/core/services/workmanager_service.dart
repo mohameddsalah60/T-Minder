@@ -1,11 +1,14 @@
 import 'dart:developer';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:tmart_expiry_date/core/repos/notifications_repo.dart';
-import 'package:tmart_expiry_date/core/repos/notifications_repo_impl.dart';
 import 'package:tmart_expiry_date/core/services/getit_service.dart';
 import 'package:workmanager/workmanager.dart';
 
+import '../../firebase_options.dart';
 import '../entites/products_entity.dart';
+import 'shared_preferences_singletone.dart';
 
 class WorkmanagerService {
   static final Workmanager workmanager = Workmanager();
@@ -13,7 +16,10 @@ class WorkmanagerService {
 
   WorkmanagerService({required this.notificationsRepo});
   static Future<void> init() async {
-    await workmanager.initialize(callbackDispatcher, isInDebugMode: true);
+    await workmanager.initialize(
+      callbackDispatcher,
+      isInDebugMode: false,
+    );
   }
 
   static void registerProductNotifications(ProductsEntity productEntity) {
@@ -21,7 +27,7 @@ class WorkmanagerService {
       productEntity.barcode,
       'sendNotification',
       frequency: const Duration(days: 1),
-      initialDelay: const Duration(minutes: 15),
+      initialDelay: Duration(days: productEntity.daysLeft!),
       inputData: {
         'barcode': productEntity.barcode,
         'daysLeft': productEntity.daysLeft,
@@ -38,11 +44,19 @@ class WorkmanagerService {
 // Callback dispatcher for background task
 // Callback dispatcher for background task
 @pragma('vm:entry-point')
-void callbackDispatcher() {
+void callbackDispatcher() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await Prefs.init();
+
+  setupGetItService();
+
   Workmanager().executeTask((task, inputData) async {
     int daysLeft = inputData!['daysLeft'];
     String barcode = inputData['barcode'];
-    NotificationsRepo notificationsRepo = getIt<NotificationsRepoImpl>();
+    NotificationsRepo notificationsRepo = getIt<NotificationsRepo>();
 
     if (task == 'sendNotification') {
       if (daysLeft == 30) {

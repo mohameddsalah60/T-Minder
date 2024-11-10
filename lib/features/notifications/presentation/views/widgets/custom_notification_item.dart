@@ -11,17 +11,24 @@ class CustomNotificationItem extends StatelessWidget {
   final NotificationsEntity notificationsEntity;
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: const EdgeInsets.all(0),
-      leading: const Icon(Icons.notifications),
-      title: Text(
-        notificationsEntity.body,
-        style: TextStyles.semiBold13,
-        maxLines: 2,
-      ),
-      trailing: Text(
-        notificationsEntity.time,
-        style: TextStyles.regular13.copyWith(color: const Color(0xff949D9E)),
+    return Container(
+      decoration: BoxDecoration(
+          color: notificationsEntity.isSeen == false
+              ? Colors.grey.shade300
+              : Colors.white,
+          borderRadius: BorderRadius.circular(8)),
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(0),
+        leading: const Icon(Icons.notifications),
+        title: Text(
+          notificationsEntity.body,
+          style: TextStyles.semiBold13,
+          maxLines: 2,
+        ),
+        trailing: Text(
+          notificationsEntity.time,
+          style: TextStyles.regular13.copyWith(color: const Color(0xff949D9E)),
+        ),
       ),
     );
   }

@@ -4,8 +4,8 @@ import '../../../domin/entites/notifications_entity.dart';
 import 'notification_header.dart';
 import 'notifications_list.dart';
 
-class NewNotifications extends StatelessWidget {
-  const NewNotifications({super.key, required this.notificationsEntity});
+class MyNotifications extends StatelessWidget {
+  const MyNotifications({super.key, required this.notificationsEntity});
   final List<NotificationsEntity> notificationsEntity;
 
   @override
@@ -17,7 +17,7 @@ class NewNotifications extends StatelessWidget {
         ),
         NotificationHeader(
           count: notificationsEntity.length.toString(),
-          title: 'جديد',
+          title: 'اشعاراتك',
         ),
         const SizedBox(
           height: 16,

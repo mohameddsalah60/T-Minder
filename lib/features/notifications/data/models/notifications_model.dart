@@ -6,7 +6,8 @@ class NotificationsModel extends NotificationsEntity {
       required super.time,
       super.isSeen,
       required super.uId,
-      required super.notificationId});
+      required super.notificationId,
+      required super.createAt});
 
   factory NotificationsModel.fromEntity(
       NotificationsEntity notificationsEntity) {
@@ -16,6 +17,7 @@ class NotificationsModel extends NotificationsEntity {
       isSeen: notificationsEntity.isSeen,
       uId: notificationsEntity.uId,
       notificationId: notificationsEntity.notificationId,
+      createAt: notificationsEntity.createAt,
     );
   }
   factory NotificationsModel.fromJson(Map<String, dynamic> data) {
@@ -25,6 +27,7 @@ class NotificationsModel extends NotificationsEntity {
       uId: data['uId'] ?? '',
       isSeen: data['isSeen'] ?? false,
       notificationId: data['notificationId'] ?? '',
+      createAt: data['createAt'] ?? '',
     );
   }
 
@@ -35,6 +38,7 @@ class NotificationsModel extends NotificationsEntity {
       'isSeen': isSeen,
       'uId': uId,
       'notificationId': notificationId,
+      'createAt': createAt,
     };
   }
 }

@@ -9,7 +9,8 @@ class NotificationsCubit extends Cubit<NotificationsState> {
   final NotificationsRepo notificationsRepo;
 
   save() {
-    notificationsRepo.showBasicNotification(body: 's');
+    notificationsRepo.showBasicNotification(
+        body: 'سيتم انتهاء صلاحية المنتج بعد اسبوع. الباركود: 0224');
   }
 
   seenNotifications({required String uId}) async {

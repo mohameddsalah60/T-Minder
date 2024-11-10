@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tmart_expiry_date/core/helper_functions/get_user.dart';
 import 'package:tmart_expiry_date/core/products_cubit/products_cubit.dart';
 import 'package:tmart_expiry_date/core/utils/app_colors.dart';
@@ -33,7 +34,7 @@ class _MyProductsViewBodyState extends State<MyProductsViewBody> {
           child: Column(
             children: [
               Container(
-                height: MediaQuery.sizeOf(context).height * .15,
+                height: 95.h,
                 padding: const EdgeInsets.all(16),
                 decoration: const BoxDecoration(
                   color: AppColors.primaryColor,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tmart_expiry_date/core/widgets/custom_dialog_alert.dart';
-import 'package:tmart_expiry_date/core/widgets/custom_loading_indector.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/cubits/select_zone_cubit/select_zone_cubit.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/views/widgets/select_zone_view_body.dart';
 import 'package:tmart_expiry_date/features/home/presentation/views/main_view.dart';

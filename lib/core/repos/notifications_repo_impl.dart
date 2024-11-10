@@ -1,8 +1,10 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:tmart_expiry_date/core/services/database_service.dart';
 import 'package:tmart_expiry_date/core/services/notifications_service.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../features/notifications/data/models/notifications_model.dart';
 import '../../features/notifications/domin/entites/notifications_entity.dart';
@@ -37,15 +39,21 @@ class NotificationsRepoImpl implements NotificationsRepo {
   }
 
   Future<void> saveNotification({required String data}) async {
-    current += 1;
-    var notificationId =
-        "${getUser().name}${DateTime.now().day + 25}${DateTime.now().hour}${DateTime.now().month + current}";
+    var notificationId = const Uuid().v4();
+
     NotificationsEntity notificationsEntity = NotificationsEntity(
       body: data,
       time: getCurrentTimeWithPeriod(),
       uId: getUser().uId,
       isSeen: false,
       notificationId: notificationId,
+      createAt: DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        DateTime.now().hour,
+        DateTime.now().minute,
+      ),
     );
     await databaseService.addData(
       path: BackendEndpoint.notificationsCollection,
@@ -61,12 +69,14 @@ class NotificationsRepoImpl implements NotificationsRepo {
           .getData(path: BackendEndpoint.notificationsCollection, query: {
         'where': 'uId',
         'isEqualTo': getUser().uId,
+        'orderBy': 'createAt',
+        'descending': true,
       }) as List<Map<String, dynamic>>;
 
       List<NotificationsEntity> notifications = data.map((e) {
         seenNotifications(uId: e['notificationId']);
-        print(e['notificationId']);
-        return NotificationsModel.fromJson(e);
+        DateTime createAt = (e['createAt'] as Timestamp).toDate();
+        return NotificationsModel.fromJson({...e, 'createAt': createAt});
       }).toList();
 
       return right(notifications);

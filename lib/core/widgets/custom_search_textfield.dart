@@ -39,6 +39,9 @@ class _CustomSearchTextfieldState extends State<CustomSearchTextfield> {
                 setState(() {
                   controller.text = barcode;
                 });
+                if (widget.onChanged != null) {
+                  widget.onChanged!(barcode);
+                }
               } catch (_) {}
             },
             child: Center(

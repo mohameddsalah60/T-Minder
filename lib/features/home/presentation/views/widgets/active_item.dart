@@ -37,7 +37,7 @@ class ActiveItem extends StatelessWidget {
               child: Center(
                   child: SvgPicture.asset(
                 image,
-                height: MediaQuery.sizeOf(context).height * .02,
+                height: MediaQuery.sizeOf(context).height * .026,
               )),
             ),
             const SizedBox(

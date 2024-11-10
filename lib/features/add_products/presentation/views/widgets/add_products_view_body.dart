@@ -195,6 +195,7 @@ class _AddProductsViewBodyState extends State<AddProductsViewBody> {
                             barcodeField.clear();
                             nameField.clear();
                             qtyField.clear();
+                            qty = 0;
                             FocusScope.of(context).unfocus();
                           } else {
                             customDialogAlert(

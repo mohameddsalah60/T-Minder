@@ -38,7 +38,9 @@ class AddProductsRepoImpl implements AddProductsRepo {
           data: ProductsModel.fromEntity(productEntity).toMap(),
           docId: productEntity.barcode,
         );
-        WorkmanagerService.registerProductNotifications(productEntity);
+        if (productEntity.isNotification) {
+          WorkmanagerService.registerProductNotifications(productEntity);
+        }
         return right(null);
       }
     } on CustomException catch (e) {

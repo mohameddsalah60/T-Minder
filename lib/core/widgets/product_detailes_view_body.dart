@@ -27,122 +27,124 @@ class ProductDetailesViewBody extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const AppBarDetailesView(),
-          TitleAndValueRow(
-            title: 'الباركود :',
-            value: product.barcode,
-          ),
-          TitleAndValueRow(
-            title: 'اسم المنتج :',
-            value: product.nameProduct,
-          ),
-          TitleAndValueRow(
-            title: 'عدد :',
-            value: '${product.qti} قطعة',
-          ),
-          TitleAndValueRow(
-            title: 'اضافه :',
-            value: product.nameBy,
-          ),
-          TitleAndValueRow(
-            title: 'ملحوظة :',
-            value: product.note!,
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-            decoration: BoxDecoration(
-              color: Colors.grey.shade200,
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(16)),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const AppBarDetailesView(),
+            TitleAndValueRow(
+              title: 'الباركود :',
+              value: product.barcode,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Text(
-                      'زون',
-                      style: TextStyles.bold16,
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    Text(product.zone.replaceFirst('زون ', ''),
-                        style: TextStyles.semiBold16),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Text(
-                      'تاريخ الانتهاء',
-                      style: TextStyles.bold16,
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    Text(
-                      product.exp,
-                      style: TextStyles.semiBold16,
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Text(
-                      'المتبقي',
-                      style: TextStyles.bold16,
-                    ),
-                    const SizedBox(
-                      height: 6,
-                    ),
-                    Text("${product.daysLeft} يوم",
-                        style: TextStyles.semiBold16),
-                  ],
-                ),
-              ],
+            TitleAndValueRow(
+              title: 'اسم المنتج :',
+              value: product.nameProduct,
             ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          CustomButton(
-            onPressed: () {
-              if (getUser().zone == product.zone.replaceFirst('زون ', '')) {
-                context.read<ProductsCubit>().deleteProducts(
-                      barcode: product.barcode,
-                    );
-              } else {
-                customDialogAlert(
-                  context: context,
-                  text: 'يجب ان تكون في نفس الزون',
-                );
-              }
-            },
-            text: "حذف المنتج",
-            backgroundColor: Colors.red,
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child: Text(
-              'العودة الي الخلف',
-              style: TextStyles.bold14.copyWith(
-                color: AppColors.primaryColor,
+            TitleAndValueRow(
+              title: 'عدد :',
+              value: '${product.qti} قطعة',
+            ),
+            TitleAndValueRow(
+              title: 'اضافه :',
+              value: product.nameBy,
+            ),
+            TitleAndValueRow(
+              title: 'ملحوظة :',
+              value: product.note!,
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade200,
+                borderRadius:
+                    const BorderRadius.vertical(top: Radius.circular(16)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        'زون',
+                        style: TextStyles.bold16,
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Text(product.zone.replaceFirst('زون ', ''),
+                          style: TextStyles.semiBold16),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        'تاريخ الانتهاء',
+                        style: TextStyles.bold16,
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Text(
+                        product.exp,
+                        style: TextStyles.semiBold16,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        'المتبقي',
+                        style: TextStyles.bold16,
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      Text("${product.daysLeft} يوم",
+                          style: TextStyles.semiBold16),
+                    ],
+                  ),
+                ],
               ),
             ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-        ],
+            const SizedBox(
+              height: 8,
+            ),
+            CustomButton(
+              onPressed: () {
+                if (getUser().zone == product.zone.replaceFirst('زون ', '')) {
+                  context.read<ProductsCubit>().deleteProducts(
+                        barcode: product.barcode,
+                      );
+                } else {
+                  customDialogAlert(
+                    context: context,
+                    text: 'يجب ان تكون في نفس الزون',
+                  );
+                }
+              },
+              text: "حذف المنتج",
+              backgroundColor: Colors.red,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: Text(
+                'العودة الي الخلف',
+                style: TextStyles.bold14.copyWith(
+                  color: AppColors.primaryColor,
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+          ],
+        ),
       ),
     );
   }
