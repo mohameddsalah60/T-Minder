@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tmart_expiry_date/core/utils/app_text_styles.dart';
 import 'package:tmart_expiry_date/features/profile/presentation/views/widgets/logout_button.dart';
 
-import 'delete_accoutn_button.dart';
+import 'delete_account_button.dart';
 import 'help.dart';
 import 'profile_view_header.dart';
 import 'profile_view_list_view.dart';

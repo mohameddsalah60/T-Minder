@@ -36,8 +36,12 @@ class WorkmanagerService {
     log('Task scheduled with periodic checks every day');
   }
 
-  static void cancelByUniqueName(String string) async {
+  static Future<void> cancelByUniqueName(String string) async {
     await workmanager.cancelByUniqueName(string);
+  }
+
+  static Future<void> cancelAll() async {
+    await workmanager.cancelAll();
   }
 }
 

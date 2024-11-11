@@ -30,7 +30,9 @@ class CustomTextFromField extends StatelessWidget {
       controller: controller,
       onSaved: onSaved,
       onEditingComplete: () {
-        FocusScope.of(context).unfocus(); // إغلاق لوحة المفاتيح
+        if (context.mounted) {
+          FocusScope.of(context).unfocus();
+        }
       },
       enabled: enabled,
       onChanged: onChanged,

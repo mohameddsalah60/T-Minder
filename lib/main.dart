@@ -40,12 +40,13 @@ class TmartExpiApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(360, 640),
+      designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
         return BlocProvider(
-          create: (context) => ProductsCubit(getIt<ProductsRepo>()),
+          create: (context) =>
+              ProductsCubit(getIt<ProductsRepo>())..getProducts(),
           child: MaterialApp(
             localizationsDelegates: const [
               S.delegate,

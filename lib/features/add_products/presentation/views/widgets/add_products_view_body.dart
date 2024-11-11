@@ -44,7 +44,7 @@ class _AddProductsViewBodyState extends State<AddProductsViewBody> {
     qtyField.dispose();
     nameField.dispose();
     noteField.dispose();
-    FocusScope.of(context).unfocus();
+
     super.dispose();
   }
 
@@ -196,7 +196,9 @@ class _AddProductsViewBodyState extends State<AddProductsViewBody> {
                             nameField.clear();
                             qtyField.clear();
                             qty = 0;
-                            FocusScope.of(context).unfocus();
+                            if (mounted) {
+                              FocusScope.of(context).unfocus();
+                            }
                           } else {
                             customDialogAlert(
                               context: context,

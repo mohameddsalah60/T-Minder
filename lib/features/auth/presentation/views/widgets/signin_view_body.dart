@@ -34,6 +34,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
           key: fromKey,
           autovalidateMode: autovalidateMode,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(
                 height: 24,

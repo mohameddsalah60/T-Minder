@@ -29,6 +29,11 @@ class _CustomSearchTextfieldState extends State<CustomSearchTextfield> {
       keyboardType: TextInputType.number,
       onChanged: widget.onChanged,
       controller: controller,
+      onEditingComplete: () {
+        if (context.mounted) {
+          FocusScope.of(context).unfocus();
+        }
+      },
       decoration: InputDecoration(
         suffixIcon: SizedBox(
           width: 20,

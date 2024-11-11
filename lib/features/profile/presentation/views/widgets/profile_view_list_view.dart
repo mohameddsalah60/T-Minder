@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../domin/entites/profile_entity.dart';
+import '../../../domin/entites/profile_entity.dart';
 import 'custom_profile_item.dart';
 
 class ProfileViewListView extends StatelessWidget {

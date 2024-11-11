@@ -20,7 +20,9 @@ void productDetailesView(BuildContext context, ProductsEntity product) {
             customDialogAlert(context: context, text: state.message);
           } else {
             Navigator.pop(context);
-            FocusScope.of(context).unfocus();
+            if (context.mounted) {
+              FocusScope.of(context).unfocus();
+            }
 
             customShowSnackBar(
               context,

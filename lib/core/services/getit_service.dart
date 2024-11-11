@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:tmart_expiry_date/core/repos/notifications_repo.dart';
+import 'package:tmart_expiry_date/features/profile/data/repos/profile_repo_impl.dart';
+import 'package:tmart_expiry_date/features/profile/domin/repos/profile_repo.dart';
 
 import '../../features/auth/data/repos/auth_repo_impl.dart';
 import '../../features/auth/domin/repos/auth_repo.dart';
@@ -18,6 +20,7 @@ final getIt = GetIt.instance;
 void setupGetItService() {
   getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
   getIt.registerSingleton<FirestoreService>(FirestoreService());
+
   getIt.registerSingleton<ScanBarcodeService>(ScanBarcodeService());
   getIt.registerSingleton<AddProductsRepo>(AddProductsRepoImpl(
     getIt<ScanBarcodeService>(),
@@ -33,6 +36,10 @@ void setupGetItService() {
     notificationsService: getIt<NotificationsService>(),
   ));
   getIt.registerSingleton<AuthRepo>(AuthRepoImpl(
+    firebaseAuthService: getIt<FirebaseAuthService>(),
+    databaseService: getIt<FirestoreService>(),
+  ));
+  getIt.registerSingleton<ProfileRepo>(ProfileRepoImpl(
     firebaseAuthService: getIt<FirebaseAuthService>(),
     databaseService: getIt<FirestoreService>(),
   ));
