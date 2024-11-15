@@ -5,9 +5,11 @@ class TitleAndValueRow extends StatelessWidget {
   const TitleAndValueRow({
     super.key,
     required this.title,
-    required this.value,
+    this.value,
+    this.child,
   });
-  final String title, value;
+  final String? title, value;
+  final Widget? child;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -16,7 +18,7 @@ class TitleAndValueRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Text(
-            title,
+            title!,
             style: TextStyles.regular16,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -24,14 +26,15 @@ class TitleAndValueRow extends StatelessWidget {
           const SizedBox(
             width: 8,
           ),
-          Expanded(
-            child: Text(
-              value,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyles.bold16,
-            ),
-          ),
+          child ??
+              Expanded(
+                child: Text(
+                  value ?? '',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyles.bold16,
+                ),
+              ),
         ],
       ),
     );

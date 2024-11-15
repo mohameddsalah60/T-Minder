@@ -35,7 +35,6 @@ class _AddProductsViewBodyState extends State<AddProductsViewBody> {
   final TextEditingController nameField = TextEditingController();
   final TextEditingController noteField = TextEditingController();
   bool isNotification = true;
-  int qty = 0;
   String? dateField;
   @override
   void dispose() {
@@ -195,7 +194,6 @@ class _AddProductsViewBodyState extends State<AddProductsViewBody> {
                             barcodeField.clear();
                             nameField.clear();
                             qtyField.clear();
-                            qty = 0;
                             if (mounted) {
                               FocusScope.of(context).unfocus();
                             }

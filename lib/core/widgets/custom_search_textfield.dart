@@ -75,6 +75,7 @@ class _CustomSearchTextfieldState extends State<CustomSearchTextfield> {
       ),
       style: TextStyles.semiBold14.copyWith(
         color: const Color(0xffFFFFFF),
+        height: 1,
       ),
     );
   }

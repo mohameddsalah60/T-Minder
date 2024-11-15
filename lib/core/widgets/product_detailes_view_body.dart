@@ -21,7 +21,7 @@ class ProductDetailesViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.sizeOf(context).width,
-      height: MediaQuery.sizeOf(context).height * .50,
+      height: MediaQuery.sizeOf(context).height * .55,
       padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -50,7 +50,14 @@ class ProductDetailesViewBody extends StatelessWidget {
             ),
             TitleAndValueRow(
               title: 'ملحوظة :',
-              value: product.note!,
+              child: Expanded(
+                child: Text(
+                  product.note!,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyles.bold16,
+                ),
+              ),
             ),
             const SizedBox(
               height: 8,

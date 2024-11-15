@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl_standalone.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:tmart_expiry_date/core/services/custom_bloc_observer.dart';
 import 'package:tmart_expiry_date/core/services/getit_service.dart';
 import 'package:tmart_expiry_date/core/services/shared_preferences_singletone.dart';
@@ -24,6 +25,11 @@ void main() async {
   );
   Bloc.observer = CustomBlocObserver();
   await Prefs.init();
+  await Permission.notification.isDenied.then((value) {
+    if (value) {
+      Permission.notification.request();
+    }
+  });
   Future.wait([
     findSystemLocale(),
     NotificationsService.init(),

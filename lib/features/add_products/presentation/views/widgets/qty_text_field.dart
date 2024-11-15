@@ -18,6 +18,9 @@ class _QtyTextFieldState extends State<QtyTextField> {
         hintText: 'عدد المنتج',
         keyboardType: TextInputType.number,
         controller: widget.controllerQtiField,
+        onSaved: (value) {
+          qty = 0;
+        },
         onChanged: (value) {
           if (value.isNotEmpty) {
             qty = int.tryParse(value) ?? 0;

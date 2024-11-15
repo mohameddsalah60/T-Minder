@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tmart_expiry_date/features/profile/presentation/views/about_us.dart';
 
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
@@ -24,9 +25,10 @@ class Help extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        const CustomProfileItem(
+        CustomProfileItem(
           title: 'من نحن',
           assetName: Assets.assetsImagesInfoRound,
+          onTap: () => Navigator.of(context).pushNamed(AboutUs.routeName),
         ),
       ],
     );

@@ -7,6 +7,7 @@ import 'package:tmart_expiry_date/core/widgets/custom_dialog_alert.dart';
 import 'package:tmart_expiry_date/features/auth/data/models/zone_model.dart';
 import 'package:tmart_expiry_date/features/auth/presentation/cubits/select_zone_cubit/select_zone_cubit.dart';
 
+import '../../../../home/presentation/views/main_view.dart';
 import 'select_zone_button.dart';
 
 class SelectZoneViewBody extends StatefulWidget {
@@ -23,11 +24,11 @@ class _SelectZoneViewBodyState extends State<SelectZoneViewBody> {
       value: "1",
     ),
     ZoneModel(
-      name: "زون البقوليات ( زون 2 )",
+      name: "زون الحلويات ( زون 2 )",
       value: "2",
     ),
     ZoneModel(
-      name: "زون الحلويات ( زون 3 )",
+      name: "زون البقوليات ( زون 3 )",
       value: "3",
     ),
     ZoneModel(
@@ -47,7 +48,25 @@ class _SelectZoneViewBodyState extends State<SelectZoneViewBody> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 64,
+                  height: 16,
+                ),
+                getUser().zone != ''
+                    ? GestureDetector(
+                        onTap: () => Navigator.of(context)
+                            .pushReplacementNamed(MainView.routeName),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'تخطي',
+                            style: TextStyles.semiBold14
+                                .copyWith(color: Colors.grey),
+                            textAlign: TextAlign.start,
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
+                const SizedBox(
+                  height: 52,
                 ),
                 Text(
                   "ايه الزون بتاعتك؟",
