@@ -40,12 +40,4 @@ class ProductsCubit extends Cubit<ProductsState> {
       },
     );
   }
-
-  deleteProducts({required String barcode}) async {
-    var result = await productsRepo.deleteProduct(barcode: barcode);
-    result.fold(
-      (failure) => emit(DeleteProductFailure(message: failure.messages)),
-      (succses) => emit(DeleteProductSuccses()),
-    );
-  }
 }

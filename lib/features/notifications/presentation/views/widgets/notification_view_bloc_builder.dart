@@ -17,13 +17,10 @@ class NotificationViewBlocBuilder extends StatelessWidget {
     return BlocBuilder<NotificationsCubit, NotificationsState>(
       builder: (context, state) {
         if (state is NotificationsSuccsess) {
-          context.read<NotificationsCubit>().save();
-
           return NotificationViewBody(
             notificationsEntity: state.notifications,
           );
         } else if (state is NoFoundNotifications) {
-          context.read<NotificationsCubit>().save();
           return const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

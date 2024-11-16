@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tmart_expiry_date/core/delete_products_cubit/delete_products_cubit.dart';
 
 import '../entites/products_entity.dart';
 import '../helper_functions/get_user.dart';
-import '../products_cubit/products_cubit.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
 import 'appbar_detailes_view.dart';
@@ -122,7 +122,7 @@ class ProductDetailesViewBody extends StatelessWidget {
             CustomButton(
               onPressed: () {
                 if (getUser().zone == product.zone.replaceFirst('زون ', '')) {
-                  context.read<ProductsCubit>().deleteProducts(
+                  context.read<DeleteProductsCubit>().deleteProducts(
                         barcode: product.barcode,
                       );
                 } else {
