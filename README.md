@@ -1,5 +1,3 @@
-# 🧾 T-Minder
-
 **T-Minder** is a smart and efficient app designed to track product expiration dates effortlessly.  
 Instead of manually checking each product, the app automatically monitors expiration dates and sends **notifications** when a product is about to expire — one month, two weeks, one week, and daily until it actually expires.  
 
@@ -7,7 +5,7 @@ This helps users take quick actions — like replacing or removing the product �
 
 ---
 
-## 🖼️ App Preview
+## App Preview
 
 <table>
   <tr>
