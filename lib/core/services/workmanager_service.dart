@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,10 @@ class WorkmanagerService {
   }
 
   static void registerProductNotifications(ProductsEntity productEntity) {
+    if (!Platform.isAndroid) {
+      // iOS and other platforms don't support background tasks the same way
+      return;
+    }
     Workmanager().registerPeriodicTask(
       productEntity.barcode,
       'sendNotification',

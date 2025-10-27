@@ -22,6 +22,13 @@
 			</dict>
 		</array>
 		<!-- End of the Google Sign-in Section -->
+		<key>UIBackgroundModes</key>
+		<array>
+			<string>processing</string>
+
+	<!-- If you need periodic tasks in iOS 13+ you need to enable Background Fetch as well -->
+			<string>fetch</string>
+		</array>
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>

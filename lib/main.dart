@@ -65,6 +65,7 @@ class TmartExpiApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             initialRoute: excuteNaviagtion(),
             theme: ThemeData(
+              brightness: Brightness.light,
               scaffoldBackgroundColor: Colors.white,
               fontFamily: 'Cairo',
             ),

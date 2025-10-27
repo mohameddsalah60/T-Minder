@@ -18,29 +18,30 @@ class ProductsRepoImpl implements ProductsRepo {
 
   ProductsRepoImpl({required this.databaseService});
   @override
-  Future<Either<Failure, List<ProductsEntity>>> getProducts() async {
+  Stream<Either<Failure, List<ProductsEntity>>> getProducts() async* {
     try {
-      var data = await databaseService
-          .getData(path: BackendEndpoint.productsCollection, query: {
+      await for (var (reslut as List<Map<String, dynamic>>) in databaseService
+          .getStreamData(path: BackendEndpoint.productsCollection, query: {
         'orderBy': 'daysLeft',
         'descending': false,
-      }) as List<Map<String, dynamic>>;
-      List<ProductsEntity> products = data.map((e) {
-        e["daysLeft"] = updateDaysLeftProduct(ProductsModel.fromJson(e));
-        if (e["daysLeft"] <= 0) {
-          databaseService.deleteData(
-            path: BackendEndpoint.productsCollection,
-            uId: e["barcode"],
-          );
-        }
-        return ProductsModel.fromJson(e);
-      }).toList();
+      })) {
+        List<ProductsEntity> products = reslut.map((e) {
+          e["daysLeft"] = updateDaysLeftProduct(ProductsModel.fromJson(e));
+          if (e["daysLeft"] <= 0) {
+            databaseService.deleteData(
+              path: BackendEndpoint.productsCollection,
+              uId: e["barcode"],
+            );
+          }
+          return ProductsModel.fromJson(e);
+        }).toList();
 
-      return right(products);
+        yield right(products);
+      }
     } on CustomException catch (e) {
-      return left(ServerFailures(e.message));
+      yield left(ServerFailures(e.message));
     } catch (e) {
-      return left(ServerFailures(e.toString()));
+      yield left(ServerFailures(e.toString()));
     }
   }
 

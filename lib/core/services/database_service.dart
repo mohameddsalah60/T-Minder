@@ -11,7 +11,12 @@ abstract class DatabaseService {
     String? subPath,
     Map<String, dynamic>? query,
   });
-
+  Stream<dynamic> getStreamData({
+    required String path,
+    String? uId,
+    String? subPath,
+    Map<String, dynamic>? query,
+  });
   Future<bool> checkIfDataExists({
     required String path,
     required String docId,

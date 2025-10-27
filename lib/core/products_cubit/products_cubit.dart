@@ -6,20 +6,23 @@ part 'products_state.dart';
 
 class ProductsCubit extends Cubit<ProductsState> {
   final ProductsRepo productsRepo;
+
   ProductsCubit(this.productsRepo) : super(ProductsInitial());
   getProducts() async {
     emit(ProductsLoading());
-    var result = await productsRepo.getProducts();
-    result.fold(
-      (failure) => emit(ProductsFailure(message: failure.messages)),
-      (products) {
-        if (products.isNotEmpty) {
-          emit(ProductsSuccses(products: products));
-        } else {
-          emit(NoFoundProductsState());
-        }
-      },
-    );
+    var result = productsRepo.getProducts();
+    await for (var data in result) {
+      data.fold(
+        (failure) => emit(ProductsFailure(message: failure.messages)),
+        (products) {
+          if (products.isNotEmpty) {
+            emit(ProductsSuccses(products: products));
+          } else {
+            emit(NoFoundProductsState());
+          }
+        },
+      );
+    }
   }
 
   getProductsByFilter(
